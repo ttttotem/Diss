@@ -1,0 +1,39 @@
+{"sentences":
+[
+{
+  "text": "This is an example of text",
+  "pos_correct": [
+    0,
+    4
+  ]
+},
+{
+  "text": "The movie starts with Neely, a shrimping boat's skipper, calling in to shore with news of a good catch. Subsequent conversations with Barb, his mate/deckhand and Cap, his boss on shore, reveals that this boat has snagged and torn several nets recently due to something on the sea floor, despite the charts showing nothing in the area. Cap and Neely decide that despite the financial strain of losing their expensive nets, they can afford one more trip to investigate the source of the snags. Neely and Barb go to Duffy 's restaurant where they meet Mom, Ryan and Baby",
+  "pos_correct": [
+    4,
+    22,
+    27,
+    58,
+    60,
+    85,
+    87,
+    90,
+    96,
+    97,
+    99
+  ]
+},
+{
+  "text": "Debbie's favorite band is Dream Street, and her favorite member is Chris Trousdale. When Chris gets a fever while travelling on the Dream Street tour, in a haze, he strays away and ends up in Debbie's bed, much to the shock of his 'Biggest Fan,' who thinks she's in heaven. Debbie proposes that Chris stay with her and he agrees. So, over the week they spend time together.",
+  "pos_correct": [
+    0,
+    11,
+    12,
+    14,
+    35,
+    50,
+    53
+  ]
+}
+]
+}
