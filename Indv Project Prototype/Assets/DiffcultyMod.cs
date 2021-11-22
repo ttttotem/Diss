@@ -8,7 +8,7 @@ public class DiffcultyMod : MonoBehaviour
     Loader loader;
     public TextMeshProUGUI text;
 
-    public int bomb_chance = 1; // 1=never 0=always
+    public int no_bomb_chance = 1; // 1=never 0=always
     public bool reversed = false;
     public float timer_max = 15; //if timer <  0 then no timer
     float current_time;
@@ -20,12 +20,12 @@ public class DiffcultyMod : MonoBehaviour
     void Start()
     {
         loader = GetComponent<Loader>();
-        loader.Set_Bomb_Chance(bomb_chance);
+        loader.Set_Bomb_Chance(no_bomb_chance);
     }
 
     public void Load_Sentence()
     {
-        loader.Set_Bomb_Chance(bomb_chance);
+        loader.Set_Bomb_Chance(no_bomb_chance);
         if (reversed == true)
         {
             text.rectTransform.eulerAngles = new Vector3(180, 0, 180);

@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 566674160}
-  bomb_chance: 1
+  no_bomb_chance: 1
   reversed: 0
   timer_max: 15
   timebar: {fileID: 1456616889}
