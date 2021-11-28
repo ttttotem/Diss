@@ -58,10 +58,21 @@ public class TMPDetector : MonoBehaviour
         text.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
     }
 
+    public int[] Get_Selected_Words()
+    {
+        return selectedWords.ToArray();
+    }
+
     public void Reset_Words()
     {
         GameManager.GM.GetComponent<Points>().check_Loc(selectedWords.ToArray());
         selectedWords.Clear();
-        loader.Load_Next_Sentence();
+        if(loader == null)
+        {
+            Debug.Log("No loader");
+        } else
+        {
+            loader.Load_Next_Sentence();
+        }
     }
 }
