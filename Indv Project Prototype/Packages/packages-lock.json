@@ -72,12 +72,31 @@
       "source": "builtin",
       "dependencies": {}
     },
+    "com.unity.burst": {
+      "version": "1.5.5",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
       "version": "1.5.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "2.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.collections": {
+      "version": "1.0.0-pre.5",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.5.4",
+        "com.unity.test-framework": "1.1.22"
       },
       "url": "https://packages.unity.com"
     },
@@ -113,8 +132,18 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.jobs": {
+      "version": "0.11.0-preview.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.collections": "1.0.0-pre.5",
+        "com.unity.mathematics": "1.2.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.mathematics": {
-      "version": "1.1.0",
+      "version": "1.2.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -167,6 +196,36 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "voxell.ai": {
+      "version": "https://github.com/voxell-tech/UnityAI.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c842d2327b04644f341520d97b0523143918b458"
+    },
+    "voxell.nlp": {
+      "version": "https://github.com/voxell-tech/UnityNLP.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "voxell.util": "1.1.0",
+        "voxell.ai": "1.0.0",
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+      },
+      "hash": "4eb10b04de4660edb886a00e3cacbb5da88e06e2"
+    },
+    "voxell.util": {
+      "version": "https://github.com/voxell-tech/UnityUtil.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.collections": "1.0.0-pre.5",
+        "com.unity.jobs": "0.11.0-preview.6",
+        "com.unity.burst": "1.5.5"
+      },
+      "hash": "3ebcdbdf397972e69255deee73ef862fddf4e9f4"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
