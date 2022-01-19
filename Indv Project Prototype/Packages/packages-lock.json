@@ -213,7 +213,7 @@
         "voxell.ai": "1.0.0",
         "com.unity.nuget.newtonsoft-json": "2.0.0"
       },
-      "hash": "4eb10b04de4660edb886a00e3cacbb5da88e06e2"
+      "hash": "4d9bfd13e7b63495ff007df70b4aa20fa94d92d4"
     },
     "voxell.util": {
       "version": "https://github.com/voxell-tech/UnityUtil.git",

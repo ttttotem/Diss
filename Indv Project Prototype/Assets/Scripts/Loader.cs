@@ -9,7 +9,7 @@ public class Loader : MonoBehaviour
 {
     public TextAsset textFile;     // drop your file here in inspector
     Sentences sentences_json;
-    Sentence[] sentences;
+    CustomSentence[] sentences;
     int currentIndex = 0;
     public TextMeshProUGUI text;
     string[] correctWords;

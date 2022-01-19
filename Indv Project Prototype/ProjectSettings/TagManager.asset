@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Node
   layers:
   - Default
   - TransparentFX
@@ -38,6 +40,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 1955936791
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Raised
+    uniqueID: 3314018035
+    locked: 0
+  - name: UI
+    uniqueID: 2034952941
     locked: 0

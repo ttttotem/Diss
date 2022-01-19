@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3224473485218840426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3224473485218840424}
+  - component: {fileID: 3224473485218840427}
+  m_Layer: 0
+  m_Name: NLPSentenceSplitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3224473485218840424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3224473485218840426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3224473485218840427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3224473485218840426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8670187ce37de8469dad64ccff13a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splitterModel: Models/EnglishSD.nbin
+  paragraph: Mr. Bean is a British sitcom created by Rowan Atkinson and Richard Curtis,
+    produced by Tiger Aspect and starring Atkinson as the title character. The sitcom
+    consists of 15 episodes that were co-written by Atkinson alongside Curtis and
+    Robin Driscoll; for the pilot, it was co-written by Ben Elton. The series was
+    originally broadcast on ITV, beginning with the pilot on 1 January 1990[1] and
+    ending with "The Best Bits of Mr. Bean" on 15 December 1995.
+  sentences:
+  - 'Mr. Bean is a British sitcom created by Rowan Atkinson and Richard Curtis, produced
+    by Tiger Aspect and starring Atkinson as the title character. '
+  - 'The sitcom consists of 15 episodes that were co-written by Atkinson alongside
+    Curtis and Robin Driscoll; for the pilot, it was co-written by Ben Elton. '
+  - The series was originally broadcast on ITV, beginning with the pilot on 1 January
+    1990[1] and ending with "The Best Bits of Mr. Bean" on 15 December 1995.

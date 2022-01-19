@@ -1,0 +1,2575 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6360048425446914928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6360048425446914929}
+  - component: {fileID: 6360048425446914934}
+  m_Layer: 0
+  m_Name: NLPNaiveBayesClassifier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6360048425446914929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360048425446914928}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6360048425446914934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360048425446914928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603ac9302b602ab47bfdff54edb8cb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classifyOptions:
+    modelFilePath: Models/Classifier/SimpleNBClassifier.model
+    dimension: 200
+    labels:
+    - Medical
+    - Not Medical
+  tokenizerModel: Models/EnglishTok.nbin
+  posTaggerModel: Models/EnglishPOS.nbin
+  tagDict: Models/Parser/tagdict
+  dataset: {fileID: 4900000, guid: 3cce082cfb2499947ab30eb39727b2b9, type: 3}
+  sentences:
+  - text: pregnancy hypertension (encompassing chronic hypertension, gestational
+      hypertension, and pre-eclampsia) affects around 10% of women
+    label: Medical
+    words:
+    - text: pregnancy
+      tag: NN
+      lemma: pregnancy
+      vector: 0
+    - text: hypertension
+      tag: NN
+      lemma: hypertension
+      vector: 0
+    - text: (
+      tag: -LRB-
+      lemma: (
+      vector: 0
+    - text: encom
+      tag: VB
+      lemma: encom
+      vector: 0
+    - text: passing
+      tag: VBG
+      lemma: passing
+      vector: 0
+    - text: chronic
+      tag: JJ
+      lemma: chronic
+      vector: 0
+    - text: hypertension
+      tag: NN
+      lemma: hypertension
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: gestational
+      tag: JJ
+      lemma: gestational
+      vector: 0
+    - text: hypertension
+      tag: NN
+      lemma: hypertension
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: and
+      tag: CC
+      lemma: and
+      vector: 0
+    - text: pre-eclampsia
+      tag: NN
+      lemma: pre-eclampsia
+      vector: 0
+    - text: )
+      tag: -RRB-
+      lemma: )
+      vector: 0
+    - text: affects
+      tag: VBZ
+      lemma: affects
+      vector: 0
+    - text: around
+      tag: IN
+      lemma: around
+      vector: 0
+    - text: 10%
+      tag: CD
+      lemma: 10%
+      vector: 0
+    - text: of
+      tag: IN
+      lemma: of
+      vector: 0
+    - text: women
+      tag: NNS
+      lemma: women
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+  - text: labetalol and nifedipine are recommended by national guidelines and commonly
+      used in clinical practice to reduce the risk of developing severe hypertension
+      in these women
+    label: Medical
+    words:
+    - text: labetalol
+      tag: NN
+      lemma: labetalol
+      vector: 0
+    - text: and
+      tag: CC
+      lemma: and
+      vector: 0
+    - text: nifedipine
+      tag: NN
+      lemma: nifedipine
+      vector: 0
+    - text: are
+      tag: VBP
+      lemma: be
+      vector: 0
+    - text: recommended
+      tag: VBN
+      lemma: recommended
+      vector: 0
+    - text: by
+      tag: IN
+      lemma: by
+      vector: 0
+    - text: national
+      tag: JJ
+      lemma: national
+      vector: 0
+    - text: guidelines
+      tag: NNS
+      lemma: guidelines
+      vector: 0
+    - text: and
+      tag: CC
+      lemma: and
+      vector: 0
+    - text: commonly
+      tag: RB
+      lemma: commonly
+      vector: 0
+    - text: used
+      tag: VBN
+      lemma: used
+      vector: 0
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: clinical
+      tag: JJ
+      lemma: clinical
+      vector: 0
+    - text: practice
+      tag: NN
+      lemma: practice
+      vector: 0
+    - text: to
+      tag: TO
+      lemma: to
+      vector: 0
+    - text: reduce
+      tag: VB
+      lemma: reduce
+      vector: 0
+    - text: the
+      tag: DT
+      lemma: the
+      vector: 0
+    - text: risk
+      tag: NN
+      lemma: risk
+      vector: 0
+    - text: of
+      tag: IN
+      lemma: of
+      vector: 0
+    - text: developing
+      tag: VBG
+      lemma: developing
+      vector: 0
+    - text: severe
+      tag: JJ
+      lemma: severe
+      vector: 0
+    - text: hypertension
+      tag: NN
+      lemma: hypertension
+      vector: 0
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: these
+      tag: DT
+      lemma: these
+      vector: 0
+    - text: women
+      tag: NNS
+      lemma: women
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+  - text: there is little evidence from head-to-head comparisons of effectiveness
+      and tolerability to guide choice of antihypertensive treatment in pregnancy,
+      and uncertainty about impact on clinical outcomes such as stroke, pre-eclampsia,
+      perinatal death, fetal growth restriction, or preterm birth
+    label: Medical
+    words:
+    - text: there
+      tag: EX
+      lemma: there
+      vector: 0
+    - text: is
+      tag: VBZ
+      lemma: be
+      vector: 0
+    - text: little
+      tag: JJ
+      lemma: little
+      vector: 0
+    - text: evidence
+      tag: NN
+      lemma: evidence
+      vector: 0
+    - text: from
+      tag: IN
+      lemma: from
+      vector: 0
+    - text: head-to
+      tag: NN
+      lemma: head-to
+      vector: 0
+    - text: -head
+      tag: JJ
+      lemma: -head
+      vector: 0
+    - text: comparisons
+      tag: NNS
+      lemma: comparisons
+      vector: 0
+    - text: of
+      tag: IN
+      lemma: of
+      vector: 0
+    - text: effectiveness
+      tag: NN
+      lemma: effectiveness
+      vector: 0
+    - text: and
+      tag: CC
+      lemma: and
+      vector: 0
+    - text: tolerability
+      tag: NN
+      lemma: tolerability
+      vector: 0
+    - text: to
+      tag: TO
+      lemma: to
+      vector: 0
+    - text: guide
+      tag: VB
+      lemma: guide
+      vector: 0
+    - text: choice
+      tag: NN
+      lemma: choice
+      vector: 0
+    - text: of
+      tag: IN
+      lemma: of
+      vector: 0
+    - text: antihypertensive
+      tag: JJ
+      lemma: antihypertensive
+      vector: 0
+    - text: treatment
+      tag: NN
+      lemma: treatment
+      vector: 0
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: pregnancy
+      tag: NN
+      lemma: pregnancy
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: and
+      tag: CC
+      lemma: and
+      vector: 0
+    - text: uncertainty
+      tag: NN
+      lemma: uncertainty
+      vector: 0
+    - text: about
+      tag: IN
+      lemma: about
+      vector: 0
+    - text: impact
+      tag: NN
+      lemma: impact
+      vector: 0
+    - text: on
+      tag: IN
+      lemma: on
+      vector: 0
+    - text: clinical
+      tag: JJ
+      lemma: clinical
+      vector: 0
+    - text: outcomes
+      tag: NNS
+      lemma: outcomes
+      vector: 0
+    - text: such
+      tag: JJ
+      lemma: such
+      vector: 0
+    - text: as
+      tag: IN
+      lemma: as
+      vector: 0
+    - text: stroke
+      tag: NN
+      lemma: stroke
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: pre-eclampsia
+      tag: NN
+      lemma: pre-eclampsia
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: perinatal
+      tag: JJ
+      lemma: perinatal
+      vector: 0
+    - text: death
+      tag: NN
+      lemma: death
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: fetal
+      tag: NN
+      lemma: fetal
+      vector: 0
+    - text: growth
+      tag: NN
+      lemma: growth
+      vector: 0
+    - text: restriction
+      tag: NN
+      lemma: restriction
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: or
+      tag: CC
+      lemma: or
+      vector: 0
+    - text: preterm
+      tag: NN
+      lemma: preterm
+      vector: 0
+    - text: birth
+      tag: NN
+      lemma: birth
+      vector: 0
+    vector:
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 1
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  - text: in december 2021, the new zealand ministry of health published a new tobacco
+      control programme with the goal of reducing smoking prevalence to less than
+      5% by 2025
+    label: Medical
+    words:
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: december
+      tag: NN
+      lemma: december
+      vector: 0
+    - text: 20
+      tag: CD
+      lemma: 20
+      vector: 0
+    - text: 21
+      tag: CD
+      lemma: 21
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: the
+      tag: DT
+      lemma: the
+      vector: 0
+    - text: new
+      tag: JJ
+      lemma: new
+      vector: 0
+    - text: zealand
+      tag: NNP
+      lemma: zealand
+      vector: 0
+    - text: ministry
+      tag: NN
+      lemma: ministry
+      vector: 0
+    - text: of
+      tag: IN
+      lemma: of
+      vector: 0
+    - text: health
+      tag: NN
+      lemma: health
+      vector: 0
+    - text: published
+      tag: VBN
+      lemma: published
+      vector: 0
+    - text: a
+      tag: DT
+      lemma: a
+      vector: 0
+    - text: new
+      tag: JJ
+      lemma: new
+      vector: 0
+    - text: tobacco
+      tag: NN
+      lemma: tobacco
+      vector: 0
+    - text: control
+      tag: NN
+      lemma: control
+      vector: 0
+    - text: programme
+      tag: NN
+      lemma: programme
+      vector: 0
+    - text: with
+      tag: IN
+      lemma: with
+      vector: 0
+    - text: the
+      tag: DT
+      lemma: the
+      vector: 0
+    - text: goal
+      tag: NN
+      lemma: goal
+      vector: 0
+    - text: of
+      tag: IN
+      lemma: of
+      vector: 0
+    - text: reducing
+      tag: VBG
+      lemma: reducing
+      vector: 0
+    - text: smoking
+      tag: NN
+      lemma: smoking
+      vector: 0
+    - text: prevalence
+      tag: NN
+      lemma: prevalence
+      vector: 0
+    - text: to
+      tag: TO
+      lemma: to
+      vector: 0
+    - text: less
+      tag: JJR
+      lemma: less
+      vector: 0
+    - text: than
+      tag: IN
+      lemma: than
+      vector: 0
+    - text: 5%
+      tag: CD
+      lemma: 5%
+      vector: 0
+    - text: by
+      tag: IN
+      lemma: by
+      vector: 0
+    - text: 2025
+      tag: CD
+      lemma: 2025
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+  - text: the prevalence of current smoking in new zealand is 10.9%, and the rate
+      of fall suggests that this is a realistic aim
+    label: Medical
+    words:
+    - text: the
+      tag: DT
+      lemma: the
+      vector: 0
+    - text: prevalence
+      tag: NN
+      lemma: prevalence
+      vector: 0
+    - text: of
+      tag: IN
+      lemma: of
+      vector: 0
+    - text: current
+      tag: JJ
+      lemma: current
+      vector: 0
+    - text: smoking
+      tag: NN
+      lemma: smoking
+      vector: 0
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: new
+      tag: JJ
+      lemma: new
+      vector: 0
+    - text: zealand
+      tag: NN
+      lemma: zealand
+      vector: 0
+    - text: is
+      tag: VBZ
+      lemma: be
+      vector: 0
+    - text: 10.9%
+      tag: CD
+      lemma: 10.9%
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: and
+      tag: CC
+      lemma: and
+      vector: 0
+    - text: the
+      tag: DT
+      lemma: the
+      vector: 0
+    - text: rate
+      tag: NN
+      lemma: rate
+      vector: 0
+    - text: of
+      tag: IN
+      lemma: of
+      vector: 0
+    - text: fall
+      tag: NN
+      lemma: fall
+      vector: 0
+    - text: suggests
+      tag: VBZ
+      lemma: suggests
+      vector: 0
+    - text: that
+      tag: IN
+      lemma: that
+      vector: 0
+    - text: this
+      tag: DT
+      lemma: thbe
+      vector: 0
+    - text: is
+      tag: VBZ
+      lemma: be
+      vector: 0
+    - text: a
+      tag: DT
+      lemma: a
+      vector: 0
+    - text: realistic
+      tag: JJ
+      lemma: realistic
+      vector: 0
+    - text: aim
+      tag: NN
+      lemma: aim
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+  - text: "however, the plan goes much further: it seeks, by 2025 to reach 5% or
+      less in all new zealand population groups. among the m\u0101ori population,
+      for example, this means reducing the proportion who smoke from one in four
+      to one in 20 in just four years."
+    label: Medical
+    words:
+    - text: however
+      tag: RB
+      lemma: however
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: the
+      tag: DT
+      lemma: the
+      vector: 0
+    - text: plan
+      tag: NN
+      lemma: plan
+      vector: 0
+    - text: goes
+      tag: VBZ
+      lemma: goes
+      vector: 0
+    - text: much
+      tag: RB
+      lemma: much
+      vector: 0
+    - text: further
+      tag: RBR
+      lemma: further
+      vector: 0
+    - text: ':'
+      tag: ':'
+      lemma: ':'
+      vector: 0
+    - text: it
+      tag: PRP
+      lemma: it
+      vector: 0
+    - text: seeks
+      tag: VBZ
+      lemma: seeks
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: by
+      tag: IN
+      lemma: by
+      vector: 0
+    - text: 2025
+      tag: CD
+      lemma: 2025
+      vector: 0
+    - text: to
+      tag: TO
+      lemma: to
+      vector: 0
+    - text: reach
+      tag: VB
+      lemma: reach
+      vector: 0
+    - text: 5%
+      tag: CD
+      lemma: 5%
+      vector: 0
+    - text: or
+      tag: CC
+      lemma: or
+      vector: 0
+    - text: less
+      tag: JJR
+      lemma: less
+      vector: 0
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: all
+      tag: DT
+      lemma: all
+      vector: 0
+    - text: new
+      tag: JJ
+      lemma: new
+      vector: 0
+    - text: zealand
+      tag: NN
+      lemma: zealand
+      vector: 0
+    - text: population
+      tag: NN
+      lemma: population
+      vector: 0
+    - text: groups
+      tag: NNS
+      lemma: groups
+      vector: 0
+    - text: .
+      tag: .
+      lemma: .
+      vector: 0
+    - text: among
+      tag: IN
+      lemma: among
+      vector: 0
+    - text: the
+      tag: DT
+      lemma: the
+      vector: 0
+    - text: "m\u0101ori"
+      tag: JJ
+      lemma: "m\u0101ori"
+      vector: 0
+    - text: population
+      tag: NN
+      lemma: population
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: for
+      tag: IN
+      lemma: for
+      vector: 0
+    - text: example
+      tag: NN
+      lemma: example
+      vector: 0
+    - text: ','
+      tag: ','
+      lemma: ','
+      vector: 0
+    - text: this
+      tag: DT
+      lemma: thbe
+      vector: 0
+    - text: means
+      tag: VBZ
+      lemma: means
+      vector: 0
+    - text: reducing
+      tag: VBG
+      lemma: reducing
+      vector: 0
+    - text: the
+      tag: DT
+      lemma: the
+      vector: 0
+    - text: proportion
+      tag: NN
+      lemma: proportion
+      vector: 0
+    - text: who
+      tag: WP
+      lemma: who
+      vector: 0
+    - text: smoke
+      tag: VBP
+      lemma: smoke
+      vector: 0
+    - text: from
+      tag: IN
+      lemma: from
+      vector: 0
+    - text: one
+      tag: CD
+      lemma: one
+      vector: 0
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: four
+      tag: CD
+      lemma: four
+      vector: 0
+    - text: to
+      tag: TO
+      lemma: to
+      vector: 0
+    - text: one
+      tag: CD
+      lemma: one
+      vector: 0
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: 20
+      tag: CD
+      lemma: 20
+      vector: 0
+    - text: in
+      tag: IN
+      lemma: in
+      vector: 0
+    - text: just
+      tag: RB
+      lemma: just
+      vector: 0
+    - text: four
+      tag: CD
+      lemma: four
+      vector: 0
+    - text: years
+      tag: NNS
+      lemma: years
+      vector: 0
+    - text: .
+      tag: .
+      lemma: .
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 1
+  - text: what is your name?
+    label: Not Medical
+    words:
+    - text: what
+      tag: WP
+      lemma: what
+      vector: 0
+    - text: is
+      tag: VBZ
+      lemma: be
+      vector: 0
+    - text: your
+      tag: PRP$
+      lemma: your
+      vector: 0
+    - text: name
+      tag: NN
+      lemma: name
+      vector: 0
+    - text: '?'
+      tag: .
+      lemma: '?'
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+  - text: what could i call you?
+    label: Not Medical
+    words:
+    - text: what
+      tag: WP
+      lemma: what
+      vector: 0
+    - text: could
+      tag: MD
+      lemma: could
+      vector: 0
+    - text: i
+      tag: FW
+      lemma: i
+      vector: 0
+    - text: call
+      tag: VB
+      lemma: call
+      vector: 0
+    - text: you
+      tag: PRP
+      lemma: you
+      vector: 0
+    - text: '?'
+      tag: .
+      lemma: '?'
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+  - text: what can i call you?
+    label: Not Medical
+    words:
+    - text: what
+      tag: WP
+      lemma: what
+      vector: 0
+    - text: can
+      tag: MD
+      lemma: can
+      vector: 0
+    - text: i
+      tag: FW
+      lemma: i
+      vector: 0
+    - text: call
+      tag: VB
+      lemma: call
+      vector: 0
+    - text: you
+      tag: PRP
+      lemma: you
+      vector: 0
+    - text: '?'
+      tag: .
+      lemma: '?'
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+  - text: what do your friends call you?
+    label: Not Medical
+    words:
+    - text: what
+      tag: WP
+      lemma: what
+      vector: 0
+    - text: do
+      tag: VBP
+      lemma: do
+      vector: 0
+    - text: your
+      tag: PRP$
+      lemma: your
+      vector: 0
+    - text: friends
+      tag: NNS
+      lemma: friends
+      vector: 0
+    - text: call
+      tag: VB
+      lemma: call
+      vector: 0
+    - text: you
+      tag: PRP
+      lemma: you
+      vector: 0
+    - text: '?'
+      tag: .
+      lemma: '?'
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 0
+  - text: who are you?
+    label: Not Medical
+    words:
+    - text: who
+      tag: WP
+      lemma: who
+      vector: 0
+    - text: are
+      tag: VBP
+      lemma: be
+      vector: 0
+    - text: you
+      tag: PRP
+      lemma: you
+      vector: 0
+    - text: '?'
+      tag: .
+      lemma: '?'
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+  - text: tell me your name?
+    label: Not Medical
+    words:
+    - text: tell
+      tag: VB
+      lemma: tell
+      vector: 0
+    - text: me
+      tag: PRP
+      lemma: me
+      vector: 0
+    - text: your
+      tag: PRP$
+      lemma: your
+      vector: 0
+    - text: name
+      tag: NN
+      lemma: name
+      vector: 0
+    - text: '?'
+      tag: .
+      lemma: '?'
+      vector: 0
+    vector:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 0
+  vocabs:
+  - a
+  - about
+  - affects
+  - aim
+  - all
+  - among
+  - and
+  - antihypertensive
+  - around
+  - as
+  - be
+  - birth
+  - by
+  - call
+  - can
+  - choice
+  - chronic
+  - clinical
+  - commonly
+  - comparisons
+  - control
+  - could
+  - current
+  - death
+  - december
+  - developing
+  - do
+  - effectiveness
+  - encom
+  - evidence
+  - example
+  - fall
+  - fetal
+  - for
+  - four
+  - friends
+  - from
+  - further
+  - gestational
+  - goal
+  - goes
+  - groups
+  - growth
+  - guide
+  - guidelines
+  - head-to
+  - health
+  - however
+  - hypertension
+  - i
+  - impact
+  - in
+  - it
+  - just
+  - labetalol
+  - less
+  - little
+  - "m\u0101ori"
+  - me
+  - means
+  - ministry
+  - much
+  - name
+  - national
+  - new
+  - nifedipine
+  - of
+  - on
+  - one
+  - or
+  - outcomes
+  - passing
+  - perinatal
+  - plan
+  - population
+  - practice
+  - pre-eclampsia
+  - pregnancy
+  - preterm
+  - prevalence
+  - programme
+  - proportion
+  - published
+  - rate
+  - reach
+  - realistic
+  - recommended
+  - reduce
+  - reducing
+  - restriction
+  - risk
+  - seeks
+  - severe
+  - smoke
+  - smoking
+  - stroke
+  - such
+  - suggests
+  - tell
+  - than
+  - that
+  - thbe
+  - the
+  - there
+  - these
+  - to
+  - tobacco
+  - tolerability
+  - treatment
+  - uncertainty
+  - used
+  - what
+  - who
+  - with
+  - women
+  - years
+  - you
+  - your
+  - zealand
+  sentenceToClassify: 
+  classifiedLabel: Medical
+  highestConfidence: 0.5580433339590414

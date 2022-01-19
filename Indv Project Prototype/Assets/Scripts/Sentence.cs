@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Sentence
+public class CustomSentence
 {
     public string text;
     public int[] pos_correct;
 
-    public Sentence(string s, int[] pos)
+    public CustomSentence(string s, int[] pos)
     {
         this.text = s;
         this.pos_correct = pos;
@@ -30,5 +30,5 @@ public class Sentence
 [System.Serializable]
 public class Sentences
 {
-    public Sentence[] sentences;
+    public CustomSentence[] sentences;
 }

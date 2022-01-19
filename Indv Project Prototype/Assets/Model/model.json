@@ -1,0 +1,26 @@
+{
+    "intents": [
+      {
+        "intent": "Medical",
+        "text": [
+          "Pregnancy hypertension (encompassing chronic hypertension, gestational hypertension, and pre-eclampsia) affects around 10% of women",
+          "Labetalol and nifedipine are recommended by national guidelines and commonly used in clinical practice to reduce the risk of developing severe hypertension in these women",
+          "There is little evidence from head-to-head comparisons of effectiveness and tolerability to guide choice of antihypertensive treatment in pregnancy, and uncertainty about impact on clinical outcomes such as stroke, pre-eclampsia, perinatal death, fetal growth restriction, or preterm birth",
+          "In December 2021, the New Zealand Ministry of Health published a new tobacco control programme with the goal of reducing smoking prevalence to less than 5% by 2025",
+          "The prevalence of current smoking in New Zealand is 10.9%, and the rate of fall suggests that this is a realistic aim",
+          "However, the plan goes much further: it seeks, by 2025 to reach 5% or less in all New Zealand population groups. Among the Māori population, for example, this means reducing the proportion who smoke from one in four to one in 20 in just four years."
+        ]
+      },
+      {
+        "intent": "Not Medical",
+        "text": [
+          "What is your name?",
+          "What could I call you?",
+          "What can I call you?",
+          "What do your friends call you?",
+          "Who are you?",
+          "Tell me your name?"
+        ]
+      }
+    ]
+  }
