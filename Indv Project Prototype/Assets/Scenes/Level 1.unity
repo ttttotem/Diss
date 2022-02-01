@@ -371,6 +371,117 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61433890}
   m_CullTransparentMesh: 1
+--- !u!1001 &87333347
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1823782328}
+    m_Modifications:
+    - target: {fileID: 9001219788603465216, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_Name
+      value: NLPNamedEntityRecognition
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: ner
+      value: "<person>John</person> has <SpecificDisease>Huntington disease</SpecificDisease>
+        \r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: sentence
+      value: ' John has Huntington disease '
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[0]
+      value: date
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[1]
+      value: location
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[2]
+      value: money
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[3]
+      value: organization
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[4]
+      value: percentage
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[5]
+      value: person
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[6]
+      value: time
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[7]
+      value: SpecificDisease
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001219788603465218, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+      propertyPath: models.Array.data[8]
+      value: medical
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+--- !u!4 &87333348 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9001219788603465217, guid: 2c469963758a8704681b5548d02921cf, type: 3}
+  m_PrefabInstance: {fileID: 87333347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &91596072
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +883,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
+--- !u!1 &159351965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 159351966}
+  - component: {fileID: 159351967}
+  m_Layer: 5
+  m_Name: Sender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &159351966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159351965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3260457429344201728}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159351967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159351965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086141768802de64290d9000ca017a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &179008656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,7 +1412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &399086028
 Transform:
   m_ObjectHideFlags: 0
@@ -3357,6 +3511,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed31e84a90d6dce45abb8e1e87ae1501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &862333346
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1823782328}
+    m_Modifications:
+    - target: {fileID: 6360048425446914928, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_Name
+      value: NLPNaiveBayesClassifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914934, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: highestConfidence
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360048425446914934, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+      propertyPath: sentenceToClassify
+      value: vaccine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+--- !u!4 &862333347 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6360048425446914929, guid: b15d6dfb1b490c848bcec2fc1dfe9480, type: 3}
+  m_PrefabInstance: {fileID: 862333346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &918715327
 GameObject:
   m_ObjectHideFlags: 0
@@ -6236,6 +6460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823782328}
   - component: {fileID: 1823782329}
+  - component: {fileID: 1823782330}
   m_Layer: 0
   m_Name: NLP
   m_TagString: Untagged
@@ -6257,6 +6482,8 @@ Transform:
   - {fileID: 2076071965}
   - {fileID: 467708229}
   - {fileID: 1123336944}
+  - {fileID: 862333347}
+  - {fileID: 87333348}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6276,11 +6503,61 @@ MonoBehaviour:
   tokenizerModel: Models/EnglishTok.nbin
   posTaggerModel: Models/EnglishPOS.nbin
   tagDict: Models/Parser/tagdict
+  nameFinderModel: Models/NameFind
   testSentence: These are some examples fishing running
   sentences: []
   tokens: []
   posTags: []
   stemmedTokens: []
+  models:
+  - date
+  - location
+  - money
+  - organization
+  - percentage
+  - person
+  - time
+  ner: 
+--- !u!114 &1823782330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823782327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d1432a2d56f634782a871c496197ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classifyOptions:
+    modelFilePath: 
+    dimension: 0
+    labels: []
+  tokenizerModel: 
+  posTaggerModel: 
+  tagDict: 
+  nameFinderModel: Models/NameFind
+  dataset: {fileID: 0}
+  sentences:
+  - text: 
+    label: 
+    words: []
+    vector: []
+  - text: 
+    label: 
+    words: []
+    vector: []
+  - text: 
+    label: 
+    words: []
+    vector: []
+  vocabs: []
+  sentenceToClassify: 
+  classifiedLabel: 
+  highestConfidence: 0
+  modelName: SpecificDisease
+  trainingData: Training/SpecificDisease
 --- !u!1 &1887113301
 GameObject:
   m_ObjectHideFlags: 0
@@ -7804,7 +8081,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7861,6 +8138,7 @@ MonoBehaviour:
     rgba: 4278628864
   loader: {fileID: 3260457429090358801}
   debug: 0
+  sendData: {fileID: 159351967}
 --- !u!1 &3260457428672373938
 GameObject:
   m_ObjectHideFlags: 0
@@ -8221,6 +8499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textFile: {fileID: 4900000, guid: 16de1f18dd8c6e844999437983a4d269, type: 3}
+  textFile2: {fileID: 4900000, guid: b001d91ded8ad154587a54861a769959, type: 3}
   text: {fileID: 3260457428299965124}
   no_bomb_chance: 0
   max_text_length: 500
@@ -8376,6 +8655,7 @@ Transform:
   - {fileID: 3260457428672373950}
   - {fileID: 3260457429090358800}
   - {fileID: 3260457428607074481}
+  - {fileID: 159351966}
   m_Father: {fileID: 399086028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

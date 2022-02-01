@@ -15,6 +15,8 @@ public class Capacitor : MonoBehaviour
     public string enemyTag = "Enemy";
     public GameObject chargePrefab;
 
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +53,8 @@ public class Capacitor : MonoBehaviour
     {
         if (target == null)
         {
+            chargeCountdown = 1f / chargeRate;
+            anim.SetBool("charging", false);
             return;
         }
 
@@ -58,8 +62,10 @@ public class Capacitor : MonoBehaviour
         if (chargeCountdown <= 0f)
         {
             Shoot();
+            anim.SetBool("charging", false);
             chargeCountdown = 1f / chargeRate;
         }
+        anim.SetBool("charging", true);
         chargeCountdown -= Time.deltaTime;
     }
 
@@ -67,7 +73,7 @@ public class Capacitor : MonoBehaviour
     {
         GameObject chargeGO = (GameObject)Instantiate(chargePrefab, transform.position, transform.rotation);
         Charge charge = chargeGO.GetComponent<Charge>();
-        Destroy(chargeGO,0.1f);
+        Destroy(chargeGO,0.4f);
     }
 
     public void Upgrade(int i)

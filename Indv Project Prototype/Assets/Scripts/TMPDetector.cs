@@ -14,6 +14,8 @@ public class TMPDetector : MonoBehaviour
     List<int> selectedWords = new List<int>();
     public bool debug = false;
 
+    public SendData sendData;
+
     //Problem as selected words not reseting when sentence changes
     private void Update()
     {
@@ -65,6 +67,10 @@ public class TMPDetector : MonoBehaviour
 
     public void Reset_Words()
     {
+        if(loader.Sendable == true)
+        {
+            sendData.addSentence(GenerateFormattedString());
+        }
         GameManager.GM.GetComponent<Points>().check_Loc(selectedWords.ToArray());
         selectedWords.Clear();
         if(loader == null)
@@ -74,5 +80,32 @@ public class TMPDetector : MonoBehaviour
         {
             loader.Load_Next_Sentence();
         }
+    }
+
+    //Might need to add merging words next to each other login if dont go iloc
+    public string GenerateFormattedString()
+    {
+        string mainSentence = text.text.ToString();
+        string superSentence = "";
+        int currentLoc = 0;
+        TMP_WordInfo[] selectedWordsInfo = new TMP_WordInfo[selectedWords.Count];
+        for(int i = 0; i<selectedWords.Count; i++)
+        {
+            selectedWordsInfo[i] = text.textInfo.wordInfo[selectedWords[i]];
+        }
+        foreach (TMP_WordInfo word in selectedWordsInfo)
+        {
+            if(word.firstCharacterIndex < mainSentence.Length && word.firstCharacterIndex - currentLoc >= 0)
+            {
+                superSentence += mainSentence.Substring(currentLoc, word.firstCharacterIndex - currentLoc);
+                superSentence += "<start: medical>" + word.GetWord() + "<end>";
+                currentLoc = word.lastCharacterIndex + 1;
+            }
+        }
+        if(currentLoc < mainSentence.Length)
+        {
+            superSentence += mainSentence.Substring(currentLoc, mainSentence.Length - currentLoc);
+        }
+        return superSentence;
     }
 }

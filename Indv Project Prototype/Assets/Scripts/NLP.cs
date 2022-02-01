@@ -7,6 +7,7 @@ using Voxell.Inspector;
 using Voxell.NLP.PosTagger;
 using Voxell.NLP.Tokenize;
 using Voxell.NLP.Stem;
+using Voxell.NLP.NameFind;
 
 public class NLP : MonoBehaviour
 {
@@ -14,11 +15,15 @@ public class NLP : MonoBehaviour
     [StreamingAssetFilePath] public string tokenizerModel;
     [StreamingAssetFilePath] public string posTaggerModel;
     [StreamingAssetFilePath] public string tagDict;
+    [StreamingAssetFolderPath] public string nameFinderModel;
+    
 
     private EnglishMaximumEntropyTokenizer tokenizer;
     private EnglishMaximumEntropyPosTagger posTagger;
 
     private EnglishMaximumEntropySentenceDetector sentenceDetector;
+
+    private EnglishNameFinder nameFinder;
 
     private RegexStemmer regexStemmer;
 
@@ -27,6 +32,11 @@ public class NLP : MonoBehaviour
     public string[] tokens;
     public string[] posTags;
     public string[] stemmedTokens;
+
+    public string[] models = new string[]
+    { "date", "location", "money", "organization", "percentage", "person", "time" };
+
+    [TextArea(1, 5), InspectOnly] public string ner;
 
     public static NLP instance;
 
@@ -54,6 +64,8 @@ public class NLP : MonoBehaviour
         //Patterns altered in Voxell.NLP.Stem
         regexStemmer = new RegexStemmer();
         regexStemmer.CreatePattern();
+
+        nameFinder = new EnglishNameFinder(FileUtilx.GetStreamingAssetFilePath(nameFinderModel));
     }
 
     public string[] SplitSentences(string paragraph)
@@ -89,10 +101,19 @@ public class NLP : MonoBehaviour
             stemmedTokens[t] = regexStemmer.Stem(tokens[t]);
     }
 
+    public void NER(string sentence)
+    {
+        
+        ner = nameFinder.GetNames(models, sentence);
+    }
+
     [Button]
     public void UpdateEditor()
     {
         POSTagger(testSentence);
         Stem(testSentence);
+        NER(testSentence);
     }
+
+
 }

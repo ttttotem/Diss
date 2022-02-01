@@ -7,9 +7,12 @@ using System.Linq;
 
 public class Loader : MonoBehaviour
 {
-    public TextAsset textFile;     // drop your file here in inspector
+    public TextAsset textFile;
     Sentences sentences_json;
     CustomSentence[] sentences;
+
+    public TextAsset knownSentencesFile;
+
     int currentIndex = 0;
     public TextMeshProUGUI text;
     string[] correctWords;
@@ -18,8 +21,20 @@ public class Loader : MonoBehaviour
     public int no_bomb_chance = 0; // 0 = 100% for bomb 1 = 0%
     public int max_text_length = 300;
 
+    public PopUp popup;
+
+    public NLPOrgs NLPOrgs;
+
+    public int KnownSentenceChance = 1;
+
+    int tutorialIndex = 0;
 
     DiffcultyMod diff_mod;
+
+    public bool Sendable = false;
+
+    string[] s;
+    string[] knownSentences;
 
     char[] seperators = new[] { ' ', '/' }; //There may be more
 
@@ -40,38 +55,161 @@ public class Loader : MonoBehaviour
     void Start()
     {
         diff_mod = GetComponent<DiffcultyMod>();
-        sentences_json = JsonUtility.FromJson<Sentences>(textFile.text);
-        sentences = sentences_json.sentences;
+        s = textFile.text.Split('\n');
+        if(knownSentencesFile != null)
+        {
+            knownSentences = knownSentencesFile.text.Split('\n');
+        }
     }
 
     public void Load_Next_Sentence()
     {
-        diff_mod.Load_Sentence();
-        if(currentIndex < sentences.Length)
+        Sendable = false;
+        if (GameManager.GM.tutorial == true)
         {
-            string temp_text = sentences[currentIndex].text;
+            Load_Tutorial_Sentence();
+        }
+        else if (Random.Range(0, KnownSentenceChance) == 0)
+        {
+            LoadKnownSentence();
+        }
+        else
+        {
+            Load_Unknown_Sentence();
+        }
+    }
+
+    public void Load_Unknown_Sentence()
+    {
+        
+        diff_mod.Load_Sentence();
+        if (currentIndex < s.Length)
+        {
+            string temp_text = s[currentIndex];
             //Cut to fit screen
-            if(temp_text.Length > max_text_length)
+            if (temp_text.Length > max_text_length)
             {
                 temp_text = temp_text.Substring(0, max_text_length);
                 //May need to adjust correct loc with CutTextToFit in future
             }
-            if(Random.value > no_bomb_chance)
+            if (Random.value > no_bomb_chance)
             {
                 // %Chance for a bomb
                 temp_text = PutBomb(temp_text);
                 GameManager.GM.GetComponent<Points>().Set_Bomb_Loc(bomb_loc);
             }
+            NLPOrgs.ParseSentence(temp_text);
             text.text = temp_text;
-            GameManager.GM.GetComponent<Points>().set_Correct_Loc(sentences[currentIndex].pos_correct);
+            GameManager.GM.GetComponent<Points>().set_Correct_Loc(NLPOrgs.GetLoc());
+            NLPOrgs.ClearLoc();
             currentIndex += 1;
+
+            //Flag this sentence as intresting
+            Sendable = true;
+
+            //start timer
+            diff_mod.StartTimer();
+        }
+        else
+        {
+            text.text = "Out of sentences";
+            GameManager.GM.GetComponent<Points>().set_Correct_Loc(null);
+        }
+    }
+
+    public void Load_Tutorial_Sentence()
+    {
+        if (knownSentences.Length == 0 || knownSentences == null)
+        {
+            Load_Next_Sentence();
+            return;
+        }
+        if (tutorialIndex >= knownSentences.Length)
+        {
+            popup.SetActive(true);
+            return;
+        } 
+        string temp_text = knownSentences[tutorialIndex];
+        string loc = "";
+        if (temp_text.Length > 0)
+        {
+            int i = temp_text.IndexOf(" ");
+
+            //Split the locations from the setence
+            loc = temp_text.Substring(0, i);
+            temp_text = temp_text.Substring(i + 1);
+            string[] temp = loc.Split(',');
+
+            //Turn the locations into an array
+            int[] locations = new int[temp.Length];
+            for (int j = 0; j < temp.Length; j++)
+            {
+                int val = 0;
+                if (int.TryParse(temp[j], out val))
+                {
+                    locations[j] = val;
+                }
+                else
+                {
+                    locations[j] = -2;
+                }
+            }
+            text.text = temp_text;
+            GameManager.GM.GetComponent<Points>().set_Correct_Loc(locations);
+
+            tutorialIndex++;
+
+            //start timer
+            diff_mod.StartTimer();
+        }
+        else
+        {
+            Load_Next_Sentence();
+            return;
+        }
+    }
+
+    public void LoadKnownSentence()
+    {
+        if(knownSentences.Length == 0 || knownSentences == null)
+        {
+            Load_Next_Sentence();
+            return;
+        }
+        string temp_text = knownSentences[Random.Range(0, knownSentences.Length)];
+        string loc = "";
+        if(temp_text.Length > 0)
+        {
+            int i = temp_text.IndexOf(" ");
+
+            //Split the locations from the setence
+            loc = temp_text.Substring(0, i);
+            temp_text = temp_text.Substring(i+1);
+            string[] temp = loc.Split(',');
+
+            //Turn the locations into an array
+            int[] locations = new int[temp.Length];
+            for(int j = 0; j<temp.Length; j++)
+            {
+                int val = 0;
+                if(int.TryParse(temp[j], out val))
+                {
+                    locations[j] = val;
+                }
+                else
+                {
+                    locations[j] = -2;
+                }
+            }
+            text.text = temp_text;
+            GameManager.GM.GetComponent<Points>().set_Correct_Loc(locations);
 
             //start timer
             diff_mod.StartTimer();
         } else
         {
-            text.text = "Out of sentences";
-            GameManager.GM.GetComponent<Points>().set_Correct_Loc(null);
+            Load_Next_Sentence();
+            return;
         }
     }
 
@@ -100,6 +238,7 @@ public class Loader : MonoBehaviour
         split_list.Insert(bomb_loc, "BOMB");
 
         //Adjust pos_correct to match with new word
+        //Wont work till you fix sentences
         for (int i = 0; i < sentences[currentIndex].pos_correct.Length; i++)
         {
             if(sentences[currentIndex].pos_correct[i] >= bomb_loc)

@@ -1,0 +1,4 @@
+An elderly lady, who was called <START> Elenor Meiers <END> , lived in Gärtnerweg 6, and I always drove there first, because I liked her the most.
+Afterwards, I went to a student, <START> Gina Schneider <END> , who lived still in her parent's house in Gärtnerweg 25.
+The last in line was the retired teacher <START> Bruno Schulz <END> in Dramenstraße 15.
+<START> Johny <END> and <START> Ricky <END>.

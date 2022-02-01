@@ -11,6 +11,7 @@ public class Points : MonoBehaviour
     int points = 0;
     public Text points_text;
     int bomb_loc = -1;
+    public bool knownSentence = false;
     
     public void set_Correct_Loc(int[] loc)
     {
@@ -50,9 +51,36 @@ public class Points : MonoBehaviour
             {
                 points += 1;
                 points_text.text = "Points: " + points;
-                Debug.Log("Correct");
+            } 
+        }
+    }
+
+    public List<int> check_Hits(int[] loc)
+    {
+        //Count how many guesses where wrong
+        List<int> hits = new List<int>();
+        foreach (int i in loc)
+        {
+            if (!correct_loc.Contains(i))
+            {
+                hits.Add(i);
             }
         }
+        return hits;
+    }
+
+    public List<int> check_Misses(int[] loc)
+    {
+        //Count how many correct answers were missed
+        List<int> misses = new List<int>();
+        foreach (int i in correct_loc)
+        {
+            if (!loc.Contains(i))
+            {
+                misses.Add(i);
+            }
+        }
+        return misses;
     }
 
     public void Bomb_Not_Found()
