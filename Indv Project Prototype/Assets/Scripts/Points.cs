@@ -7,8 +7,12 @@ using UnityEngine.UI;
 public class Points : MonoBehaviour
 {
     [SerializeField]
-    int[] correct_loc;
+    public int[] correct_loc;
     int points = 0;
+
+    int hiddenPoints = 0;
+    int hiddenTaken = 0;
+
     public Text points_text;
     int bomb_loc = -1;
     public bool knownSentence = false;
@@ -55,9 +59,10 @@ public class Points : MonoBehaviour
         }
     }
 
-    public List<int> check_Hits(int[] loc)
+    public bool check_Hits(int[] loc)
     {
         //Count how many guesses where wrong
+        hiddenTaken += 1;
         List<int> hits = new List<int>();
         foreach (int i in loc)
         {
@@ -66,10 +71,15 @@ public class Points : MonoBehaviour
                 hits.Add(i);
             }
         }
-        return hits;
+        if(hits.Count == 0)
+        {
+            hiddenPoints += 1;
+            return true;
+        }
+        return false;
     }
 
-    public List<int> check_Misses(int[] loc)
+    public bool check_Misses(int[] loc)
     {
         //Count how many correct answers were missed
         List<int> misses = new List<int>();
@@ -80,7 +90,12 @@ public class Points : MonoBehaviour
                 misses.Add(i);
             }
         }
-        return misses;
+        if (misses.Count == 0)
+        {
+            hiddenPoints += 1;
+            return true;
+        }
+        return false;
     }
 
     public void Bomb_Not_Found()

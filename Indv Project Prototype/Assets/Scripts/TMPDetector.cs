@@ -10,11 +10,15 @@ public class TMPDetector : MonoBehaviour
     public string LastClickedWord;
     public Color32 startColor = new Color32(0,0,0,255);
     public Color32 onClickColour = new Color32(20, 20, 20, 255);
+    public Color32 hintColour = new Color32(200, 0, 160, 255);
     public Loader loader;
     List<int> selectedWords = new List<int>();
     public bool debug = false;
+    int repeatFails = 0;
 
     public SendData sendData;
+
+    Points points;
 
     //Problem as selected words not reseting when sentence changes
     private void Update()
@@ -45,6 +49,11 @@ public class TMPDetector : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        points = GameManager.GM.GetComponent<Points>();
+    }
+
     void PaintWord(TMP_WordInfo wInfo, Color32 color)
     {
         //change colour of clicked word
@@ -65,19 +74,67 @@ public class TMPDetector : MonoBehaviour
         return selectedWords.ToArray();
     }
 
+    public void RepaintWords()
+    {
+        TMP_WordInfo[] wInfo = text.textInfo.wordInfo;
+        foreach(TMP_WordInfo word in wInfo)
+        {
+            PaintWord(word, startColor);
+        }
+    }
+
+    public void PaintCorrectWords()
+    {
+        foreach(int i in points.correct_loc)
+        {
+            PaintWord(text.textInfo.wordInfo[i], hintColour);
+        }
+    }
+
     public void Reset_Words()
     {
         if(loader.Sendable == true)
         {
             sendData.addSentence(GenerateFormattedString());
         }
-        GameManager.GM.GetComponent<Points>().check_Loc(selectedWords.ToArray());
+        if (points.knownSentence == true)
+        {
+            //Answer is known so make sure all words hit
+            bool hits = points.check_Hits(selectedWords.ToArray());
+            bool misses = points.check_Misses(selectedWords.ToArray());
+            if (hits == true && misses == true)
+            {
+                //Answer correct
+                Debug.Log("Correct");
+            } else
+            {
+                Debug.Log("missed");
+                selectedWords.Clear();
+                if (loader == null)
+                {
+                    Debug.Log("No loader");
+                }
+                else
+                { 
+                    loader.Load_Prev_Sentence();
+                    RepaintWords();
+                    repeatFails++;
+                    if (repeatFails >= 4)
+                    {
+                        PaintCorrectWords();
+                    }
+                }
+                return;
+            }
+        }
+        points.check_Loc(selectedWords.ToArray());
         selectedWords.Clear();
         if(loader == null)
         {
             Debug.Log("No loader");
         } else
         {
+            repeatFails = 0;
             loader.Load_Next_Sentence();
         }
     }

@@ -36,6 +36,8 @@ public class Loader : MonoBehaviour
     string[] s;
     string[] knownSentences;
 
+    Points points;
+
     char[] seperators = new[] { ' ', '/' }; //There may be more
 
     public void Set_Bomb_Chance(int i)
@@ -52,6 +54,8 @@ public class Loader : MonoBehaviour
         
     }
 
+
+
     void Start()
     {
         diff_mod = GetComponent<DiffcultyMod>();
@@ -60,22 +64,45 @@ public class Loader : MonoBehaviour
         {
             knownSentences = knownSentencesFile.text.Split('\n');
         }
+        points = GameManager.GM.GetComponent<Points>();
     }
 
     public void Load_Next_Sentence()
     {
         Sendable = false;
+
         if (GameManager.GM.tutorial == true)
         {
+            points.knownSentence = true;
             Load_Tutorial_Sentence();
         }
         else if (Random.Range(0, KnownSentenceChance) == 0)
         {
+            points.knownSentence = true;
             LoadKnownSentence();
         }
         else
         {
+            points.knownSentence = false;
             Load_Unknown_Sentence();
+        }
+    }
+
+    public void Load_Prev_Sentence()
+    {
+        Sendable = false;
+
+        if (GameManager.GM.tutorial == true)
+        {
+            points.knownSentence = true;
+            tutorialIndex -= 1;
+            Load_Tutorial_Sentence();
+        }
+        else
+        {
+            points.knownSentence = true;
+            currentIndex -= 1;
+            LoadKnownSentence();
         }
     }
 
@@ -176,7 +203,8 @@ public class Loader : MonoBehaviour
             Load_Next_Sentence();
             return;
         }
-        string temp_text = knownSentences[Random.Range(0, knownSentences.Length)];
+        currentIndex = Random.Range(0, knownSentences.Length);
+        string temp_text = knownSentences[currentIndex];
         string loc = "";
         if(temp_text.Length > 0)
         {

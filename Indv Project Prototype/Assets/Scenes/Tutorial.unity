@@ -1816,6 +1816,9 @@ MonoBehaviour:
   onClickColour:
     serializedVersion: 2
     rgba: 4278628864
+  hintColour:
+    serializedVersion: 2
+    rgba: 4291625215
   loader: {fileID: 3260457429090358801}
   debug: 0
   sendData: {fileID: 159351967}
