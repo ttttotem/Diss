@@ -25,6 +25,8 @@ public class Loader : MonoBehaviour
 
     public NLPOrgs NLPOrgs;
 
+    public Points points;
+
     public int KnownSentenceChance = 1;
 
     int tutorialIndex = 0;
@@ -35,8 +37,6 @@ public class Loader : MonoBehaviour
 
     string[] s;
     string[] knownSentences;
-
-    Points points;
 
     char[] seperators = new[] { ' ', '/' }; //There may be more
 
@@ -64,7 +64,8 @@ public class Loader : MonoBehaviour
         {
             knownSentences = knownSentencesFile.text.Split('\n');
         }
-        points = GameManager.GM.GetComponent<Points>();
+        currentIndex = 0;
+        tutorialIndex = 0;
     }
 
     public void Load_Next_Sentence()
@@ -101,8 +102,7 @@ public class Loader : MonoBehaviour
         else
         {
             points.knownSentence = true;
-            currentIndex -= 1;
-            LoadKnownSentence();
+            LoadKnownSentence(true);
         }
     }
 
@@ -110,6 +110,7 @@ public class Loader : MonoBehaviour
     {
         
         diff_mod.Load_Sentence();
+        currentIndex = Random.Range(0, s.Length);
         if (currentIndex < s.Length)
         {
             string temp_text = s[currentIndex];
@@ -123,11 +124,11 @@ public class Loader : MonoBehaviour
             {
                 // %Chance for a bomb
                 temp_text = PutBomb(temp_text);
-                GameManager.GM.GetComponent<Points>().Set_Bomb_Loc(bomb_loc);
+                points.Set_Bomb_Loc(bomb_loc);
             }
             NLPOrgs.ParseSentence(temp_text);
             text.text = temp_text;
-            GameManager.GM.GetComponent<Points>().set_Correct_Loc(NLPOrgs.GetLoc());
+            points.set_Correct_Loc(NLPOrgs.GetLoc());
             NLPOrgs.ClearLoc();
             currentIndex += 1;
 
@@ -154,8 +155,11 @@ public class Loader : MonoBehaviour
         if (tutorialIndex >= knownSentences.Length)
         {
             popup.SetActive(true);
+            GameManager.GM.tutorial = false;
             return;
-        } 
+        }
+        Debug.Log(tutorialIndex);
+        Debug.Log(knownSentences.Length);
         string temp_text = knownSentences[tutorialIndex];
         string loc = "";
         if (temp_text.Length > 0)
@@ -182,7 +186,7 @@ public class Loader : MonoBehaviour
                 }
             }
             text.text = temp_text;
-            GameManager.GM.GetComponent<Points>().set_Correct_Loc(locations);
+            points.set_Correct_Loc(locations);
 
             tutorialIndex++;
 
@@ -196,14 +200,17 @@ public class Loader : MonoBehaviour
         }
     }
 
-    public void LoadKnownSentence()
+    public void LoadKnownSentence(bool prev=false)
     {
         if(knownSentences.Length == 0 || knownSentences == null)
         {
             Load_Next_Sentence();
             return;
         }
-        currentIndex = Random.Range(0, knownSentences.Length);
+        if(prev == false)
+        {
+            currentIndex = Random.Range(0, knownSentences.Length);
+        }
         string temp_text = knownSentences[currentIndex];
         string loc = "";
         if(temp_text.Length > 0)
@@ -230,7 +237,7 @@ public class Loader : MonoBehaviour
                 }
             }
             text.text = temp_text;
-            GameManager.GM.GetComponent<Points>().set_Correct_Loc(locations);
+            points.set_Correct_Loc(locations);
 
             //start timer
             diff_mod.StartTimer();

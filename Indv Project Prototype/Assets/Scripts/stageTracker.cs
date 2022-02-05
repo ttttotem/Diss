@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class stageTracker : MonoBehaviour
 {
@@ -71,7 +72,7 @@ public class stageTracker : MonoBehaviour
         {
             if(stageState == Stage.Stages)
             {
-                
+                SceneManager.LoadScene(0);
             } else
             {
                 SetOneActive(stages);

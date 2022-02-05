@@ -12,12 +12,15 @@ using UnityEngine;
 using Voxell;
 using Voxell.NLP.NameFind;
 using Voxell.Inspector;
+using TMPro;
 
 public class NLPOrgs : MonoBehaviour
 {
     [StreamingAssetFolderPath] public string nameFinderModel;
     public string[] models = new string[]
     {"organization"};
+
+    public TextMeshProUGUI text_helper;
 
     List<int> loc = new List<int>();
 
@@ -36,21 +39,43 @@ public class NLPOrgs : MonoBehaviour
 
     public string ParseTagLoc(string s)
     {
-        string[] tokens = s.Split(' ');
+        text_helper.text = s;
+        text_helper.ForceMeshUpdate(true);
         string superstring = "";
         int i = 0;
-        foreach (string t in tokens)
+        bool chaining = false;
+        foreach (TMP_WordInfo wInfo in text_helper.textInfo.wordInfo)
         {
-            i++;
-            if (t.Equals("<START>"))
+            if(wInfo.characterCount > 0)
             {
-                loc.Add(i);   
-            } else if (t.Equals("<END>"))
-            {
-                loc.Add(i);
-            } else
-            {
-                superstring += t;
+                string t = wInfo.GetWord();
+                if (t.Contains("STARTCODE001"))
+                {
+                    if (t.Contains("ENDCODE002"))
+                    {
+                        loc.Add(i);
+                        chaining = false;
+                    } else
+                    {
+                        loc.Add(i);
+                        chaining = true;
+                    }
+                }
+                else if (t.Contains("ENDCODE002"))
+                {
+                    loc.Add(i);
+                    chaining = false;
+                }
+                else
+                {
+                    if (chaining == true)
+                    {
+                        loc.Add(i);
+                    }
+                    
+                    superstring += t;
+                }
+                i++;
             }
         }
         return superstring;

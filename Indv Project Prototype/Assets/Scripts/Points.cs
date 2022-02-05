@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using PlayFab;
+using PlayFab.ClientModels;
+using PlayFab.Json;
+using System;
+using LoginResult = PlayFab.ClientModels.LoginResult;
+
 
 public class Points : MonoBehaviour
 {
@@ -16,7 +22,15 @@ public class Points : MonoBehaviour
     public Text points_text;
     int bomb_loc = -1;
     public bool knownSentence = false;
-    
+
+    public void Start()
+    {
+        if(points_text == null)
+        {
+            points_text = GameObject.Find("Points").GetComponent<Text>();
+        }
+    }
+
     public void set_Correct_Loc(int[] loc)
     {
         this.correct_loc = loc;
@@ -48,15 +62,38 @@ public class Points : MonoBehaviour
             Bomb_Not_Found();
         }
 
+        int temp_points = 0;
+
         //Points for words found
         foreach(int i in loc)
         {
             if (correct_loc.Contains(i))
             {
-                points += 1;
-                points_text.text = "Points: " + points;
-            } 
+                temp_points += 1;
+                
+            }
         }
+
+        //Scale points by number of correct
+        if(temp_points == 0.5 * correct_loc.Length || temp_points > 2)
+        {
+            temp_points = 1;
+        } else
+        {
+            temp_points = 0;
+        }
+
+        //If guessing lots of words subtract points
+        int extra_guesses = loc.Length - correct_loc.Length;
+        if(extra_guesses > 5)
+        {
+            //User has made excessive guesses
+            temp_points = 0;
+        }
+
+        points += temp_points;
+
+        points_text.text = "Points: " + points;
     }
 
     public bool check_Hits(int[] loc)
@@ -102,4 +139,31 @@ public class Points : MonoBehaviour
     {
         Debug.Log("Bomb not found");
     }
+        public void SubmitScore()
+        {
+            if (!PlayFabClientAPI.IsClientLoggedIn())
+            {
+                return;
+            }
+            PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
+            {
+                Statistics = new List<StatisticUpdate> {
+            new StatisticUpdate {
+                StatisticName = "Score",
+                Value = points
+            }
+        }
+            }, result => OnStatisticsUpdated(result), FailureCallback);
+        }
+
+        private void OnStatisticsUpdated(UpdatePlayerStatisticsResult updateResult)
+        {
+            Debug.Log("Successfully submitted high score");
+        }
+
+        private void FailureCallback(PlayFabError error)
+        {
+            Debug.LogWarning("Something went wrong with your API call. Here's some debug information:");
+            Debug.LogError(error.GenerateErrorReport());
+        }
 }

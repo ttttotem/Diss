@@ -10,9 +10,6 @@ using LoginResult = PlayFab.ClientModels.LoginResult;
 
 public class PlayerLogin : MonoBehaviour
 {
-
-    public static PlayerLogin PL;
-
     private string userEmail;
     private string userName;
     private string userPassword;
@@ -21,19 +18,7 @@ public class PlayerLogin : MonoBehaviour
     public GameObject loginPanel, signupPanel, loggedInPanel, leaderboardPanel;
 
     public InputField email;
-
-    public void Awake()
-    {
-        if (PlayerLogin.PL == null)
-        {
-            PlayerLogin.PL = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-    }
+    public InputField password;
 
     public void Start()
     {
@@ -42,6 +27,10 @@ public class PlayerLogin : MonoBehaviour
         if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
         {
             PlayFabSettings.TitleId = "1566D"; // Please change this value to your own titleId from PlayFab Game Manager
+        }
+        if (PlayFabClientAPI.IsClientLoggedIn())
+        {
+            SetOneActive(loggedInPanel);
         }
     }
 
@@ -173,6 +162,7 @@ public class PlayerLogin : MonoBehaviour
         PlayFabClientAPI.ForgetAllCredentials();
         userPassword = null;
         email.text = userEmail;
+        password.text = "";
         SetOneActive(loginPanel);
     }
 
@@ -245,7 +235,7 @@ public class PlayerLogin : MonoBehaviour
 
     public void GetLeaderBoard()
     {
-        var requestLeaderboard = new GetLeaderboardRequest { StartPosition = 0, StatisticName = "PlayerLevel", MaxResultsCount = 20 };
+        var requestLeaderboard = new GetLeaderboardRequest { StartPosition = 0, StatisticName = "Score", MaxResultsCount = 20 };
         PlayFabClientAPI.GetLeaderboard(requestLeaderboard, OnGetLeaderBoard, OnPlayFabError);
     }
 
@@ -270,4 +260,5 @@ public class PlayerLogin : MonoBehaviour
         }
     }
     #endregion leaderBoard
+
 }

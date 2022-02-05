@@ -18,7 +18,7 @@ public class TMPDetector : MonoBehaviour
 
     public SendData sendData;
 
-    Points points;
+    public Points points;
 
     //Problem as selected words not reseting when sentence changes
     private void Update()
@@ -47,11 +47,9 @@ public class TMPDetector : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void Start()
-    {
-        points = GameManager.GM.GetComponent<Points>();
+        if (Input.GetKey("h")){
+            PaintCorrectWords();
+        }
     }
 
     void PaintWord(TMP_WordInfo wInfo, Color32 color)
@@ -81,6 +79,7 @@ public class TMPDetector : MonoBehaviour
         {
             PaintWord(word, startColor);
         }
+        selectedWords.Clear();
     }
 
     public void PaintCorrectWords()
@@ -89,6 +88,7 @@ public class TMPDetector : MonoBehaviour
         {
             PaintWord(text.textInfo.wordInfo[i], hintColour);
         }
+        selectedWords.Clear();
     }
 
     public void Reset_Words()

@@ -11,6 +11,8 @@ public class HyperParameters : MonoBehaviour
     public Dropdown[] dd;
     public Button btn;
     public Text text;
+    public LevelTracker levelTracker;
+
     public void CheckAnswer()
     {
         if (!complete)
@@ -27,6 +29,7 @@ public class HyperParameters : MonoBehaviour
             if (complete)
             {
                 Complete();
+                levelTracker.ParamsTuned();
             }
         }
     }

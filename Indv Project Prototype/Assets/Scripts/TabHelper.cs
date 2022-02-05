@@ -9,6 +9,7 @@ public class TabHelper : MonoBehaviour
 
     EventSystem system;
     public GameObject[] tabs;
+    public Button enter;
     private int currentTab = 0;
 
     void Start()
@@ -21,12 +22,24 @@ public class TabHelper : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            if(tabs == null)
+            {
+                return;
+            }
             currentTab++;
             if (currentTab >= tabs.Length)
             {
                 currentTab = 0;
             }
             EventSystem.current.SetSelectedGameObject(tabs[currentTab], null);
+        }
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
+        {
+            if(enter != null)
+            {
+                enter.onClick.Invoke();
+            }
         }
     }
 }

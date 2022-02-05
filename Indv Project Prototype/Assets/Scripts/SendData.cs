@@ -10,6 +10,8 @@ public class SendData : MonoBehaviour
     string URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfdeoB3cj0na1S9brlyajSTy2L-RBR39hZB7YJR3VO0F67AyA/formResponse";
     int counter = 0;
     string _sentence = "";
+    public Points points;
+    public LevelTracker levelTracker;
 
     public void addSentence(string sentence)
     {
@@ -22,8 +24,13 @@ public class SendData : MonoBehaviour
             Send("user1", _sentence);
             counter = 0;
             _sentence = "";
+            if(points != null)
+            {
+                points.SubmitScore();
+            }
+            
         }
-        
+        levelTracker.IncreaseSubmission();
         counter++;
     }
 
