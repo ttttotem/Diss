@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using TMPro;
 
 public class Loader : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Loader : MonoBehaviour
     CustomSentence[] sentences;
 
     public TextAsset knownSentencesFile;
+
+    public TextMeshProUGUI text_helper;
 
     int currentIndex = 0;
     public TextMeshProUGUI text;
@@ -37,8 +40,6 @@ public class Loader : MonoBehaviour
 
     string[] s;
     string[] knownSentences;
-
-    char[] seperators = new[] { ' ', '/' }; //There may be more
 
     public void Set_Bomb_Chance(int i)
     {
@@ -209,7 +210,8 @@ public class Loader : MonoBehaviour
         }
         if(prev == false)
         {
-            currentIndex = Random.Range(0, knownSentences.Length);
+            //currentIndex = Random.Range(0, knownSentences.Length);
+            currentIndex += 1;
         }
         string temp_text = knownSentences[currentIndex];
         string loc = "";
@@ -267,20 +269,35 @@ public class Loader : MonoBehaviour
 
     public string PutBomb(string s)
     {
-        string[] split = s.Split(seperators);
+        string[] split = s.Split(' ');
         List<string> split_list = new List<string>(split);
         bomb_loc = Random.Range(0, split.Length);
         split_list.Insert(bomb_loc, "BOMB");
 
-        //Adjust pos_correct to match with new word
-        //Wont work till you fix sentences
-        for (int i = 0; i < sentences[currentIndex].pos_correct.Length; i++)
+        string bombed_Text = string.Join(" ", split_list.ToArray());
+
+        //Find where bomb really is according to TMP
+        text_helper.text = bombed_Text;
+        text_helper.ForceMeshUpdate(true);
+
+        bomb_loc = -1;
+
+        int counter = 0;
+
+        foreach (TMP_WordInfo wInfo in text_helper.textInfo.wordInfo)
         {
-            if(sentences[currentIndex].pos_correct[i] >= bomb_loc)
+            if(wInfo.characterCount > 0)
             {
-                sentences[currentIndex].pos_correct[i] += 1;
+                if(wInfo.GetWord() == "BOMB")
+                {
+                    bomb_loc = counter;
+                    break;
+                }
+                
             }
+            counter++;
         }
-        return string.Join(" ", split_list.ToArray());
+
+        return bombed_Text;
     }
 }

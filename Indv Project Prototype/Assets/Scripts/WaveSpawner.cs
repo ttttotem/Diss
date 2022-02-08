@@ -5,20 +5,18 @@ using TMPro;
 
 public class WaveSpawner : MonoBehaviour
 {
-
-    private string[] enemy;
-    private string[] ally;
-
     public GameObject[] units;
     public float maxSpawnDelay;
 
     public TextMeshProUGUI text;
 
+    public WaveUI waveUI;
+    
+    public List<Wave> waves = new List<Wave> ();
+
     // Start is called before the first frame update
     void Start()
     {
-        enemy = new string[] { "hello", "this","is", "an","example", "whats" };
-        ally = new string[] { "medicine", "vaxcine", "donor", "blood" };
         StartCoroutine(SpawnWave());
     }
 
@@ -30,25 +28,57 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    public void AddWave(Wave wave)
+    {
+        if(wave != null && wave._enemyCounts.Length >0)
+        {
+            waves.Add(wave);
+        }  
+    }
+
     IEnumerator SpawnWave()
     {
-        int counter = 0;
-        foreach (var enemy in enemy)
+        if(waves.Count == 0 || waves == null)
         {
-            SpawnUnit(units[0]);
-            yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
-            if(Random.Range(0,2) == 0 && counter < ally.Length)
+            waveUI.ResetUI();
+            Debug.Log("no wave found");
+            yield break;
+        }
+        Wave nextWave = waves[0];
+        waves.RemoveAt(0);
+
+        if(nextWave == null || nextWave._enemyCounts.Length == 0)
+        {
+            Debug.Log("Wave has no enemies");
+            yield break;
+        }
+
+        int allies = nextWave._enemyCounts[0];
+        int enemies1 = nextWave._enemyCounts[1];
+        int enemies2 = nextWave._enemyCounts[2];
+        
+        waveUI.UpdateUI(nextWave);
+
+        while (allies > 0 || enemies1 > 0 || enemies2 > 0)
+        {
+            int rand = Random.Range(0, 3);
+            if (rand == 0 && allies > 0)
             {
-                counter++;
+                allies--;
+                SpawnUnit(units[0]);
+                yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
+            } else if(rand == 1 && enemies1 > 0)
+            {
+                enemies1--;
                 SpawnUnit(units[1]);
                 yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
+            } else if(rand == 2 && enemies2 >0)
+            {
+                enemies2--;
+                SpawnUnit(units[2]);
+                yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
             }
-        }
-        //Some allies not spawned
-         for (int i = counter; i < ally.Length; i++)
-         {
-            SpawnUnit(units[1]);
-            yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
+            
         }
     }
 
@@ -57,38 +87,34 @@ public class WaveSpawner : MonoBehaviour
         Instantiate(unit,transform.position,transform.rotation);
     }
 
-    public void AddWave(string paragraph)
+    public void AddWave(string paragraph,int medical=5)
     {
         var sentences = NLP.instance.SplitSentences(paragraph);
+        int[] enemyCount = new int[7]; //0 = medical, 1 = noun, ...
+        enemyCount[0] = medical;
         foreach (var sentence in sentences)
         {
+            if(sentence.Length == 0 || sentence == "No more sentences")
+            {
+                continue;
+            }
+            Debug.Log(sentence);
             NLP.instance.POSTagger(sentence);
-            int[] enemyCount = new int[7]; //0 = noun, 1 = verb, ...
             foreach(var posTag in NLP.instance.posTags)
             {
                 if (posTag == "NN")
                 {
-                    enemyCount[0]++;
+                    enemyCount[1]++;
                 } else if (posTag == "VB")
                 {
-                    enemyCount[1]++;
+                    enemyCount[2]++;
                 } else
                 {
-                    enemyCount[2]++;
+                    enemyCount[3]++;
                 }
             }
-            Wave newWave = new Wave("Temp",enemyCount);
         }
-    }
-
-    public void ParseSubmittedSentence()
-    {
-        if(text.text == null || text.text == "Out of sentences")
-        {
-            return;
-        } else
-        {
-            AddWave(text.text);
-        }
+        Wave newWave = new Wave(paragraph, enemyCount);
+        AddWave(newWave);
     }
 }

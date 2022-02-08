@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TMPDetector : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class TMPDetector : MonoBehaviour
     List<int> selectedWords = new List<int>();
     public bool debug = false;
     int repeatFails = 0;
+
+    public WaveSpawner waveSpawner;
 
     public SendData sendData;
 
@@ -84,6 +87,7 @@ public class TMPDetector : MonoBehaviour
 
     public void PaintCorrectWords()
     {
+        RepaintWords();
         foreach(int i in points.correct_loc)
         {
             PaintWord(text.textInfo.wordInfo[i], hintColour);
@@ -97,6 +101,7 @@ public class TMPDetector : MonoBehaviour
         {
             sendData.addSentence(GenerateFormattedString());
         }
+        
         if (points.knownSentence == true)
         {
             //Answer is known so make sure all words hit
@@ -109,25 +114,30 @@ public class TMPDetector : MonoBehaviour
             } else
             {
                 Debug.Log("missed");
-                selectedWords.Clear();
                 if (loader == null)
                 {
                     Debug.Log("No loader");
                 }
                 else
                 { 
-                    loader.Load_Prev_Sentence();
-                    RepaintWords();
-                    repeatFails++;
-                    if (repeatFails >= 4)
+                    if (repeatFails <= 3)
                     {
-                        PaintCorrectWords();
+                        loader.Load_Prev_Sentence();
+                        RepaintWords();
+                        if(repeatFails == 3)
+                        {
+                            PaintCorrectWords();
+                        }
+                        repeatFails++;
+                        selectedWords.Clear();
+                        return;
                     }
                 }
-                return;
             }
         }
         points.check_Loc(selectedWords.ToArray());
+        string waveText = text.text;
+        waveSpawner.AddWave(waveText, selectedWords.Count);
         selectedWords.Clear();
         if(loader == null)
         {

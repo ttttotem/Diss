@@ -32,6 +32,10 @@ public class EnemyEnd : MonoBehaviour
     public void LoseLives(int lives)
     {
         currentLives -= lives;
+        if (currentLives < 0)
+        {
+            currentLives = 0;
+        }
         text.text = currentLives.ToString();
     }
 }

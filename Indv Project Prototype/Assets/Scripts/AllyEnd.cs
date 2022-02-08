@@ -28,6 +28,15 @@ public class AllyEnd : MonoBehaviour
         text.text = safe.ToString() + "/" + required.ToString();
     }
     
+    public void SetRequired(int val)
+    {
+        if(val >= 0)
+        {
+            required = val;
+            text.text = safe.ToString() + "/" + required.ToString();
+        }
+    }
+
     public void OneBackSafe()
     {
         safe += 1;

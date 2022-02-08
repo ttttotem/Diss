@@ -105,6 +105,7 @@ public class Points : MonoBehaviour
         {
             if (!correct_loc.Contains(i))
             {
+                Debug.Log("Shouldnt hit " + i);
                 hits.Add(i);
             }
         }
@@ -124,6 +125,7 @@ public class Points : MonoBehaviour
         {
             if (!loc.Contains(i))
             {
+                Debug.Log("Missed " + i);
                 misses.Add(i);
             }
         }
