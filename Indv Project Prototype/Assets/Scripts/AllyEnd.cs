@@ -30,10 +30,23 @@ public class AllyEnd : MonoBehaviour
     
     public void SetRequired(int val)
     {
+        safe = 0;
         if(val >= 0)
         {
             required = val;
             text.text = safe.ToString() + "/" + required.ToString();
+        }
+    }
+
+    public bool CheckPassed()
+    {
+        if(required <= safe)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

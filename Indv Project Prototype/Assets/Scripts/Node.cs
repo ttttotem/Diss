@@ -8,7 +8,7 @@ public class Node : MonoBehaviour
     public int col;
     public int row;
 
-    public enum NodeType { Free, Terminal, Blocked, Path, Checking};
+    public enum NodeType { Free, Terminal, Blocked, Path, Checking, Turret};
     public NodeType nodeType = NodeType.Free;
 
     public Color hoverColor;
@@ -41,23 +41,7 @@ public class Node : MonoBehaviour
     {
         if (nodeType == NodeType.Free)
         {
-            if (PathCreator.instance.pressing == true && PathCreator.instance.tracing == true)
-            {
-                PathCreator.instance.AddNode(this);
-                nodeType = NodeType.Checking;
-                rend.color = Color.red;
-            }
-            else
-            {
-                rend.color = hoverColor;
-            }
-        }
-        else if (nodeType == NodeType.Terminal)
-        {
-            if (PathCreator.instance.pressing == true && PathCreator.instance.tracing == true)
-            {
-                PathCreator.instance.AddNode(this);
-            }
+            rend.color = hoverColor;
         }
     }
 
@@ -65,10 +49,6 @@ public class Node : MonoBehaviour
     {
         if (nodeType == NodeType.Free)
         {
-            if(PathCreator.instance.pressing == true && PathCreator.instance.tracing == true)
-            {
-                return;
-            }
             rend.color = startColor;
         }
     }
@@ -80,7 +60,7 @@ public class Node : MonoBehaviour
             if (turret != null)
             {
                 //Turret exists
-                Upgrade.instance.ShowUpgrades(transform.position + posOffset, turret);
+                Upgrade.instance.ShowUpgrades(transform.position + posOffset, turret, this);
                 return;
             }
             //Is UI (the menu) in the way
@@ -89,21 +69,6 @@ public class Node : MonoBehaviour
                 return;
             }
             Shop.instance.ShowShop(transform.position + posOffset,gameObject);
-        } else if (nodeType == NodeType.Terminal)
-        {
-            PathCreator.instance.tracing = true;
-        }
-    }
-
-    private void OnMouseUp()
-    {
-        if(nodeType == NodeType.Terminal)
-        {
-            PathCreator.instance.CheckValidPath();
-        }
-        else
-        {
-            PathCreator.instance.RemoveInvalidPath();
         }
     }
 

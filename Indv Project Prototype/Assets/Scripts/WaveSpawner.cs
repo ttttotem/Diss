@@ -14,18 +14,73 @@ public class WaveSpawner : MonoBehaviour
     
     public List<Wave> waves = new List<Wave> ();
 
-    // Start is called before the first frame update
-    void Start()
+    public LevelTracker levelTracker;
+
+    public int requiredWaves=10;
+    int completedWaves=0;
+
+    public Wave currentWave;
+
+    public int GetCompletedWaves()
     {
-        StartCoroutine(SpawnWave());
+        return completedWaves;
     }
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        completedWaves = 0;
+    }
+
+    public void IncreaseCompletedWaves()
+    {
+        completedWaves += 1;
+        currentWave = null;
+        if(completedWaves >= requiredWaves)
         {
-            StartCoroutine(SpawnWave());
+            //Tower Finished
+            levelTracker.towerClear = true;
+            waveUI.setWavesComplete(requiredWaves, requiredWaves);
+        } else
+        {
+            waveUI.setWavesComplete(completedWaves,requiredWaves);
+            StartWave();
         }
+    }
+
+    public void FailedWave()
+    {
+        if(currentWave == null)
+        {
+            return;
+        }
+        waves.Insert(0, currentWave);
+        StartWave();
+    }
+
+    public void StartWave()
+    {
+        StopAllCoroutines();
+        StartCoroutine(SpawnWave(5));
+    }
+
+    public void EndWave()
+    {
+        //Kill all units
+        GameObject[] unitsAlive = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject unit in unitsAlive)
+        {
+            Destroy(unit);
+        }
+        if(currentWave != null)
+        {
+            waves.Insert(0, currentWave);
+        }
+    }
+
+    public void RestartWave()
+    {
+        EndWave();
+        StartWave();
     }
 
     public void AddWave(Wave wave)
@@ -35,8 +90,7 @@ public class WaveSpawner : MonoBehaviour
             waves.Add(wave);
         }  
     }
-
-    IEnumerator SpawnWave()
+    IEnumerator SpawnWave(int time)
     {
         if(waves.Count == 0 || waves == null)
         {
@@ -45,11 +99,19 @@ public class WaveSpawner : MonoBehaviour
             yield break;
         }
         Wave nextWave = waves[0];
+        currentWave = nextWave;
+
         waves.RemoveAt(0);
 
-        if(nextWave == null || nextWave._enemyCounts.Length == 0)
+        if (nextWave == null)
         {
-            Debug.Log("Wave has no enemies");
+            Debug.Log("Wave not found");
+            yield break;
+        }
+
+        if (nextWave._enemyCounts == null)
+        {
+            Debug.Log("EnemyCounts not found");
             yield break;
         }
 
@@ -59,6 +121,15 @@ public class WaveSpawner : MonoBehaviour
         
         waveUI.UpdateUI(nextWave);
 
+        //Spawn Timer
+        for (int i = time; i >= 0; i--)
+        {
+            waveUI.timerText.text = i.ToString();
+            yield return new WaitForSeconds(1f);
+        }
+        waveUI.timerText.text = "";
+
+
         while (allies > 0 || enemies1 > 0 || enemies2 > 0)
         {
             int rand = Random.Range(0, 3);
@@ -66,20 +137,23 @@ public class WaveSpawner : MonoBehaviour
             {
                 allies--;
                 SpawnUnit(units[0]);
+                waveUI.UnitSpawned(0);
                 yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
             } else if(rand == 1 && enemies1 > 0)
             {
                 enemies1--;
                 SpawnUnit(units[1]);
+                waveUI.UnitSpawned(1);
                 yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
             } else if(rand == 2 && enemies2 >0)
             {
                 enemies2--;
                 SpawnUnit(units[2]);
+                waveUI.UnitSpawned(2);
                 yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
             }
-            
         }
+        waveUI.AllUnitsSpawned();
     }
 
     void SpawnUnit(GameObject unit)
@@ -98,7 +172,6 @@ public class WaveSpawner : MonoBehaviour
             {
                 continue;
             }
-            Debug.Log(sentence);
             NLP.instance.POSTagger(sentence);
             foreach(var posTag in NLP.instance.posTags)
             {

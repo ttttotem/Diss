@@ -10,7 +10,6 @@ public class EnemyAI : MonoBehaviour
     private Transform target;
     private int wavepointIndex = 0;
 
-
     // Start is called before the first frame update
     void Start()
     {

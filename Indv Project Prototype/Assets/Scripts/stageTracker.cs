@@ -14,6 +14,7 @@ public class stageTracker : MonoBehaviour
     public GameObject hyperParameters;
     public GameObject model;
 
+    public WaveSpawner waveSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +58,7 @@ public class stageTracker : MonoBehaviour
         if (gm == model)
         {
             model.SetActive(true);
+            waveSpawner.StartWave();
             stageState = Stage.Model;
         }
         else
@@ -73,6 +75,10 @@ public class stageTracker : MonoBehaviour
             if(stageState == Stage.Stages)
             {
                 SceneManager.LoadScene(0);
+            } else if(stageState == Stage.Model)
+            {
+                waveSpawner.EndWave();
+                SetOneActive(stages);
             } else
             {
                 SetOneActive(stages);

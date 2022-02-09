@@ -7,6 +7,7 @@ public class EnemyEnd : MonoBehaviour
 {
 
     public static EnemyEnd instance;
+    public WaveUI waveUI;
 
     private void Awake()
     {
@@ -37,5 +38,23 @@ public class EnemyEnd : MonoBehaviour
             currentLives = 0;
         }
         text.text = currentLives.ToString();
+    }
+
+    public void ResetLives()
+    {
+        currentLives = lives;
+        text.text = lives.ToString();
+    }
+
+    public bool CheckPassed()
+    {
+        if(currentLives > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

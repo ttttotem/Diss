@@ -24,16 +24,18 @@ public class Upgrade : MonoBehaviour
     private BoxCollider2D col;
     private Tower callingTower;
     private Capacitor callingCapacitor;
+    private Node callingNode;
 
     public void Start()
     {
         col = GetComponent<BoxCollider2D>();
     }
 
-    public void ShowUpgrades(Vector3 pos, GameObject tower)
+    public void ShowUpgrades(Vector3 pos, GameObject tower, Node node)
     {
         transform.position = pos + new Vector3(0, 0, -1);
         callingTower = tower.GetComponent<Tower>();
+        callingNode = node;
 
         int counter = 0;
         foreach (Upgrades upgrade in callingTower.getUpgrades())
@@ -63,6 +65,11 @@ public class Upgrade : MonoBehaviour
             callingTower.Upgrade(i);
             HideUpgrades();
         }
+    }
+
+    public void Sell()
+    {
+        Destroy(callingTower.gameObject);
     }
 
     private void OnMouseDown()
