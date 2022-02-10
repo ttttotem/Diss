@@ -133,7 +133,7 @@ PrefabInstance:
     - target: {fileID: 2016110129846159635, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
       propertyPath: points_text
       value: 
-      objectReference: {fileID: 3260457428510468547}
+      objectReference: {fileID: 0}
     - target: {fileID: 2016110129846159725, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &159351966
 Transform:
   m_ObjectHideFlags: 0
@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 0}
+  levelTracker: {fileID: 0}
 --- !u!1 &399086027
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,17 +283,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdbf1a48369bdbe40a64ae1a41dcbf17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &674275332 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2016110129846159724, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
-  m_PrefabInstance: {fileID: 117322305}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0767bfea39646ab478a0b3e7c6eb7755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &764548056
@@ -455,6 +445,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pop-up
       objectReference: {fileID: 0}
+    - target: {fileID: 3148994463691757274, guid: aad9826ec1ddf274991d52dd7bdd813d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3148994463691757275, guid: aad9826ec1ddf274991d52dd7bdd813d, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -502,13 +496,38 @@ PrefabInstance:
     - target: {fileID: 3148994464184406787, guid: aad9826ec1ddf274991d52dd7bdd813d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 674275332}
+      objectReference: {fileID: 3148994463825501228}
+    - target: {fileID: 3148994464184406787, guid: aad9826ec1ddf274991d52dd7bdd813d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3148994464184406787, guid: aad9826ec1ddf274991d52dd7bdd813d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3148994464184406787, guid: aad9826ec1ddf274991d52dd7bdd813d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aad9826ec1ddf274991d52dd7bdd813d, type: 3}
+--- !u!1 &3148994463825501227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3148994464280670547, guid: aad9826ec1ddf274991d52dd7bdd813d, type: 3}
+  m_PrefabInstance: {fileID: 3148994463825501226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3148994463825501228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3148994463825501227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea5db5ab0e8ee14788d1c25164d300c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3260457428299965124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3260457428510468546
 RectTransform:
   m_ObjectHideFlags: 0
@@ -869,7 +888,8 @@ MonoBehaviour:
     rgba: 4291625215
   loader: {fileID: 3260457429090358801}
   debug: 0
-  sendData: {fileID: 159351967}
+  waveSpawner: {fileID: 0}
+  sendData: {fileID: 0}
   points: {fileID: 3260457428510468548}
 --- !u!1 &3260457428672373938
 GameObject:
@@ -1232,6 +1252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textFile: {fileID: 4900000, guid: 6168d478d3bc2c944b0e388520fbda10, type: 3}
   knownSentencesFile: {fileID: 4900000, guid: 6168d478d3bc2c944b0e388520fbda10, type: 3}
+  tutorial: 1
+  text_helper: {fileID: 0}
   text: {fileID: 3260457428299965124}
   no_bomb_chance: 0
   max_text_length: 500

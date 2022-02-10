@@ -14,6 +14,8 @@ public class Loader : MonoBehaviour
 
     public TextAsset knownSentencesFile;
 
+    public bool tutorial = false;
+
     public TextMeshProUGUI text_helper;
 
     int currentIndex = 0;
@@ -73,7 +75,7 @@ public class Loader : MonoBehaviour
     {
         Sendable = false;
 
-        if (GameManager.GM.tutorial == true)
+        if (tutorial == true)
         {
             points.knownSentence = true;
             Load_Tutorial_Sentence();
@@ -94,7 +96,7 @@ public class Loader : MonoBehaviour
     {
         Sendable = false;
 
-        if (GameManager.GM.tutorial == true)
+        if (tutorial == true)
         {
             points.knownSentence = true;
             tutorialIndex -= 1;
@@ -156,11 +158,14 @@ public class Loader : MonoBehaviour
         if (tutorialIndex >= knownSentences.Length)
         {
             popup.SetActive(true);
-            GameManager.GM.tutorial = false;
+
+            //Save beating the tutorial:
+            GameManager.GM.SetLevel(1, true);
+            //Tutorial is beat for both systems so user doesnt have to do it twice
+            GameManager.GM.SetLevel(1, false);
+
             return;
         }
-        Debug.Log(tutorialIndex);
-        Debug.Log(knownSentences.Length);
         string temp_text = knownSentences[tutorialIndex];
         string loc = "";
         if (temp_text.Length > 0)

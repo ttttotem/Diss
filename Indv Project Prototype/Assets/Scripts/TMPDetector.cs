@@ -137,7 +137,10 @@ public class TMPDetector : MonoBehaviour
         }
         points.check_Loc(selectedWords.ToArray());
         string waveText = text.text;
-        waveSpawner.AddWave(waveText, selectedWords.Count);
+        if(waveSpawner != null)
+        {
+            waveSpawner.AddWave(waveText, selectedWords.Count);
+        }
         selectedWords.Clear();
         if(loader == null)
         {

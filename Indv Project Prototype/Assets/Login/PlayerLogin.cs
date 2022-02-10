@@ -15,13 +15,16 @@ public class PlayerLogin : MonoBehaviour
     private string userPassword;
     public Text loginError, registerError;
 
-    public GameObject loginPanel, signupPanel, loggedInPanel, leaderboardPanel;
+    public GameObject loginPanel, signupPanel, loggedInPanelA,loggedInPanelB, leaderboardPanel, settingsPanel;
 
     public InputField email;
     public InputField password;
 
+    GameManager gm;
+
     public void Start()
     {
+        gm = GameManager.GM;
         SetOneActive(loginPanel);
         //Note: Setting title Id here can be skipped if you have set the value in Editor Extensions already.
         if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
@@ -30,7 +33,25 @@ public class PlayerLogin : MonoBehaviour
         }
         if (PlayFabClientAPI.IsClientLoggedIn())
         {
-            SetOneActive(loggedInPanel);
+            if(gm.SystemA == true)
+            {
+                SetOneActive(loggedInPanelA);
+            } else
+            {
+                SetOneActive(loggedInPanelB);
+            }
+            
+        }
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PlayFabClientAPI.IsClientLoggedIn())
+            {
+                SetOneActive(loggedInPanelA);
+            }
         }
     }
 
@@ -38,8 +59,19 @@ public class PlayerLogin : MonoBehaviour
     {
         loginPanel.SetActive(false);
         signupPanel.SetActive(false);
-        loggedInPanel.SetActive(false);
+        loggedInPanelA.SetActive(false);
+        loggedInPanelB.SetActive(false);
         leaderboardPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+
+        if(panel==loggedInPanelB && gm.SystemA == true)
+        {
+            panel = loggedInPanelA;
+        } else if (panel == loggedInPanelA && gm.SystemA == false)
+        {
+            panel = loggedInPanelB;
+        }
+
         panel.SetActive(true);
     }
 
@@ -80,7 +112,7 @@ public class PlayerLogin : MonoBehaviour
     private void OnLoginSuccess(LoginResult result)
     {
         PlayerPrefs.SetString("Email", userEmail);
-        SetOneActive(loggedInPanel);
+        SetOneActive(loggedInPanelA);
         GetStats();
     }
     private void OnLoginFailure(PlayFabError error)
@@ -108,7 +140,7 @@ public class PlayerLogin : MonoBehaviour
     private void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         PlayerPrefs.SetString("Email", userEmail);
-        SetOneActive(loggedInPanel);
+        SetOneActive(loggedInPanelA);
         GetStats();
     }
     private void OnRegisterFailure(PlayFabError error)
@@ -253,7 +285,7 @@ public class PlayerLogin : MonoBehaviour
 
     public void CloseLeaderBoardPanel()
     {
-        SetOneActive(loggedInPanel);
+        SetOneActive(loggedInPanelA);
         for (int i = listingContainer.childCount - 1; i >= 0; i--)
         {
             Destroy(listingContainer.GetChild(i).gameObject);
