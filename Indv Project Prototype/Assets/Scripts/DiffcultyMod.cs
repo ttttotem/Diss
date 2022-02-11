@@ -38,6 +38,10 @@ public class DiffcultyMod : MonoBehaviour
 
     private void Update()
     {
+        if(timebar == null)
+        {
+            return;
+        }
         if(timer_on)
         {
             if(current_time <= 0)
@@ -53,6 +57,10 @@ public class DiffcultyMod : MonoBehaviour
 
     public void StartTimer()
     {
+        if(timebar == null)
+        {
+            return;
+        }
         if(timer_max < 0)
         {
             return;

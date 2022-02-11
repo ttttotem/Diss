@@ -9,14 +9,7 @@ public class StageHandler : MonoBehaviour
     public TextMeshProUGUI output_text;
     public GameObject ws;
     public GameObject ps;
-    public List<CustomSentence> sentences;
     public TMPDetector tmpd;
-    int counter;
-
-    private void Start()
-    {
-        counter = 0;
-    }
 
     public void SetPickStageActive()
     {
@@ -32,30 +25,4 @@ public class StageHandler : MonoBehaviour
         ws.SetActive(true);
         ps.SetActive(false);
     }
-
-    public void SubmitSentence()
-    {
-        counter += 1;
-        CustomSentence s = new CustomSentence(output_text.text, tmpd.Get_Selected_Words());
-        sentences.Add(s);
-        if (counter > 4)
-        {
-            EvaluateSentences();
-        } else
-        {
-            output_text.text = "Enter a new sentence...";
-            SetWriteStageActive();
-        }
-    }
-
-    public void EvaluateSentences()
-    {
-        int result = GetComponent<Eval>().Evaluate(sentences.ToArray());
-    }
-
-    public CustomSentence[] GetSentences()
-    {
-        return sentences.ToArray();
-    }
-
 }

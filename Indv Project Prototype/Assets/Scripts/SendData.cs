@@ -30,7 +30,10 @@ public class SendData : MonoBehaviour
             }
             
         }
-        levelTracker.IncreaseSubmission();
+        if(levelTracker != null)
+        {
+            levelTracker.IncreaseSubmission();
+        }
         counter++;
     }
 

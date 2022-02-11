@@ -157,8 +157,10 @@ public class Loader : MonoBehaviour
         }
         if (tutorialIndex >= knownSentences.Length)
         {
-            popup.SetActive(true);
-
+            if(popup != null)
+            {
+                popup.SetActive(true);
+            }
             //Save beating the tutorial:
             GameManager.GM.SetLevel(1, true);
             //Tutorial is beat for both systems so user doesnt have to do it twice
@@ -215,8 +217,8 @@ public class Loader : MonoBehaviour
         }
         if(prev == false)
         {
-            //currentIndex = Random.Range(0, knownSentences.Length);
-            currentIndex += 1;
+            currentIndex = Random.Range(0, knownSentences.Length);
+            //currentIndex += 1;
         }
         string temp_text = knownSentences[currentIndex];
         string loc = "";

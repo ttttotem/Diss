@@ -12,9 +12,23 @@ public class GameManager : MonoBehaviour
     public bool FirstSystemComplete = false;
     public bool SecondSystemComplete = false;
 
-    double TimerLen = 30;
+    public double TimerLen = 30;
     public double Timer = 30;
+
+    [HideInInspector]
     public bool timing = false;
+
+    public PopUp firstTimerPopUp;
+    public PopUp secondTimerPopUp;
+
+    [HideInInspector]
+    public bool Switched = false;
+
+    public void SwitchSystem()
+    {
+        SystemA = !SystemA;
+        Switched = true;
+    }
     
     public void StartTimer()
     {
@@ -42,14 +56,12 @@ public class GameManager : MonoBehaviour
                 if(FirstSystemComplete == false)
                 {
                     FirstSystemComplete = true;
-                    Debug.Log("First section done");
-                    //Popup
+                    firstTimerPopUp.SetActive(true);
                     timing = false;
                 } else if (SecondSystemComplete == false)
                 {
                     SecondSystemComplete = true;
-                    Debug.Log("Second section done");
-                    //Popup
+                    secondTimerPopUp.SetActive(true);
                     timing = false;
                 }
             }

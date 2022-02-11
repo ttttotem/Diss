@@ -56,6 +56,5 @@ public class Shop : MonoBehaviour
             return;
         }
         HideShop();
-
     }
 }

@@ -26,6 +26,7 @@ public class stageTracker : MonoBehaviour
     // Updates the stageState to match
     public void SetOneActive(GameObject gm)
     {
+        Time.timeScale = 1;
         if(gm == stages)
         {
             stages.SetActive(true);

@@ -28,7 +28,7 @@ public class Saver : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.S))
         {
             Debug.Log("this");
-            SaveToFile(sh.GetSentences());
+            //SaveToFile(sh.GetSentences());
         }
     }
 }

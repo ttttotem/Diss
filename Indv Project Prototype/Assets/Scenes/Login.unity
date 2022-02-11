@@ -809,7 +809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &491830996
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1231,6 +1231,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8903666498477947397}
+        m_TargetAssemblyTypeName: PlayerLogin, Assembly-CSharp
+        m_MethodName: SetOneActive
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 491830995}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &678504601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,14 +1446,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2016110129846159635, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
-      propertyPath: points_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2016110129846159724, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
-      propertyPath: tutorial
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2016110129846159725, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1490,8 +1494,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: GM
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2016110129846159635, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a30cc68dbc086a54b8820e2f004090c7, type: 3}
 --- !u!1 &1105452557
 GameObject:
@@ -1930,6 +1933,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8903666498477947397}
+        m_TargetAssemblyTypeName: PlayerLogin, Assembly-CSharp
+        m_MethodName: SetOneActive
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8903666499247036070}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2669,7 +2684,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6288,7 +6303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8903666499247036071
 RectTransform:
   m_ObjectHideFlags: 0

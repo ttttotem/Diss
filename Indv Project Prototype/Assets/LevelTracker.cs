@@ -16,6 +16,8 @@ public class LevelTracker : MonoBehaviour
     int subs = 0;
     int paramsTune = 0;
 
+    public Text[] falses;
+
 
     public void Start()
     {
@@ -49,11 +51,15 @@ public class LevelTracker : MonoBehaviour
         accuracy = 0;
         if (paramsTuned == true && paramsTune == 0)
         {
+            //Hyper params tuned
+            SetFalseTextTrue(1);
             paramsTune = Random.Range(10, 33);
         }
 
         if (towerClear == true && tower == 0)
         {
+            //Tower passed
+            SetFalseTextTrue(2);
             tower = Random.Range(10, 33);
         }
 
@@ -72,6 +78,8 @@ public class LevelTracker : MonoBehaviour
             }
             else
             {
+                //Required submissions met
+                SetFalseTextTrue(0);
                 subs = 30;
             }
         }
@@ -84,5 +92,22 @@ public class LevelTracker : MonoBehaviour
         }
 
         text.text = "Test Accuracy: " + accuracy + "%";
+    }
+
+    void SetFalseTextTrue(int i)
+    {
+        if (i < falses.Length)
+        {
+            if (falses[i] != null)
+            {
+                falses[i].text = "True";
+                falses[i].color = Color.green;
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        Recalculate();
     }
 }

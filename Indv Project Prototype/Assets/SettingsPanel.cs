@@ -10,8 +10,6 @@ public class SettingsPanel : MonoBehaviour
     public Text text;
     public Text currentSystem;
 
-    bool Switched = false;
-
     public void Start()
     {
         systemA.interactable = false;
@@ -39,8 +37,11 @@ public class SettingsPanel : MonoBehaviour
             return;
         }
 
-        if(Switched == true)
+        if(GameManager.GM.Switched == true)
         {
+            text.text = "Please finish using the second system";
+            systemA.interactable = false;
+            systemB.interactable = false;
             return;
         }
 
@@ -65,11 +66,9 @@ public class SettingsPanel : MonoBehaviour
             systemB.interactable = false;
         }
     }
-
     public void SetSystemA(bool val)
     {
-        GameManager.GM.SystemA = val;
-        Switched = true;
+        GameManager.GM.SwitchSystem();
         if(val == true)
         {
             currentSystem.text = "Currently using system A";
