@@ -16,7 +16,11 @@ public class LevelTracker : MonoBehaviour
     int subs = 0;
     int paramsTune = 0;
 
+    public int Level = 1;
+
     public Text[] falses;
+
+    public GameObject levelComplete;
 
 
     public void Start()
@@ -89,9 +93,26 @@ public class LevelTracker : MonoBehaviour
         if (towerClear == true && paramsTuned == true && submissions >= RequiredSubmissions)
         {
             accuracy = 100;
+            LevelCleared();
         }
 
         text.text = "Test Accuracy: " + accuracy + "%";
+    }
+
+    public void LevelCleared()
+    {
+        levelComplete.SetActive(true);
+        if (PlayerPrefs.HasKey("SystemALevel"))
+        {
+            int level = PlayerPrefs.GetInt("SystemALevel");
+            if (level < Level)
+            {
+                PlayerPrefs.SetInt("SystemALevel", Level);
+            }
+        } else
+        {
+            PlayerPrefs.SetInt("SystemALevel", Level);
+        }
     }
 
     void SetFalseTextTrue(int i)
@@ -100,7 +121,7 @@ public class LevelTracker : MonoBehaviour
         {
             if (falses[i] != null)
             {
-                falses[i].text = "True";
+                falses[i].text = "TRUE";
                 falses[i].color = Color.green;
             }
         }

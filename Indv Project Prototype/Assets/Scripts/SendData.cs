@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using PlayFab;
 
 public class SendData : MonoBehaviour
 {
@@ -11,17 +12,16 @@ public class SendData : MonoBehaviour
     int counter = 0;
     string _sentence = "";
     public Points points;
-    public LevelTracker levelTracker;
 
     public void addSentence(string sentence)
     {
 
         _sentence += "  \n \n " + sentence;
 
-        //every 10 sentences send batch sentence
+        //every 10 sentences send batch sentence and update player score
         if(counter == 10)
         {
-            Send("user1", _sentence);
+            Send(GameManager.GM.PlayerID, _sentence);
             counter = 0;
             _sentence = "";
             if(points != null)
@@ -29,10 +29,6 @@ public class SendData : MonoBehaviour
                 points.SubmitScore();
             }
             
-        }
-        if(levelTracker != null)
-        {
-            levelTracker.IncreaseSubmission();
         }
         counter++;
     }
@@ -55,12 +51,18 @@ public class SendData : MonoBehaviour
         }
         Debug.Log("Sending");
         WWWForm form = new WWWForm();
-        //User id
-        form.AddField("entry.1188352957", user);
+
+        //User id, Hidden score, and system
+        string system = "A";
+        if (GameManager.GM.SystemA == false)
+        {
+            system = "B";
+        }
+        form.AddField("entry.1188352957","User: " + user + " Hidden taken: " + points.hiddenTaken + " Hidden Correct: " + points.hiddenCorrect + " System: " + system);
 
         //Sentences
         form.AddField("entry.1594666246", sentences);
-
+        
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
 
         yield return www.SendWebRequest();

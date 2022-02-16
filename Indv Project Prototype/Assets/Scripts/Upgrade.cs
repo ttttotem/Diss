@@ -9,6 +9,8 @@ public class Upgrade : MonoBehaviour
     public static Upgrade instance;
     public Button[] btns;
 
+    Money money;
+
     private void Awake()
     {
         if (instance != null)
@@ -29,6 +31,7 @@ public class Upgrade : MonoBehaviour
     public void Start()
     {
         col = GetComponent<BoxCollider2D>();
+        money = FindObjectOfType<Money>();
     }
 
     public void ShowUpgrades(Vector3 pos, GameObject tower, Node node)
@@ -62,13 +65,38 @@ public class Upgrade : MonoBehaviour
     {
         if (i >= 0 && i < callingTower.getUpgrades().Length)
         {
-            callingTower.Upgrade(i);
-            HideUpgrades();
+            bool succeed = false;
+            if (i == 0)
+            {
+                //first upgrade
+                succeed = money.Purchase(100);
+            }
+            else if (i == 1)
+            {
+                //second upgrade
+                succeed = money.Purchase(200);
+            }
+            if (succeed)
+            {
+                callingTower.Upgrade(i);
+                HideUpgrades();
+            }
         }
     }
 
     public void Sell()
     {
+        if(callingTower != null)
+        {
+            if(callingTower.type == Tower.Type.Turret)
+            {
+                money.AddMoney(50);
+            } else if (callingTower.type == Tower.Type.Capacitor)
+            {
+                money.AddMoney(100);
+            }
+        }
+        
         Destroy(callingTower.gameObject);
     }
 

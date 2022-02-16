@@ -8,79 +8,53 @@ public class Capacitor : MonoBehaviour
 
     public float chargeRange = 8f;
     public float range = 4f;
-    public float chargeRate = 1f;
-    private float chargeCountdown = 0f;
+    public float chargeTime = 1f;
+    public int damage = 100;
 
-    private Transform target;
-    public string enemyTag = "Enemy";
     public GameObject chargePrefab;
 
     public Animator anim;
 
+    public AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+    public void Shoot()
+    {
+        StartCoroutine(ChargeShot());
     }
 
-    void UpdateTarget()
+    IEnumerator ChargeShot()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
-
-        if (nearestEnemy != null && shortestDistance < chargeRange)
-        {
-            target = nearestEnemy.transform;
-        }
-        else
-        {
-            target = null;
-        }
-    }
-
-    private void Update()
-    {
-        if (target == null)
-        {
-            chargeCountdown = 1f / chargeRate;
-            anim.SetBool("charging", false);
-            return;
-        }
-
-        var dir = target.position - transform.position;
-        if (chargeCountdown <= 0f)
-        {
-            Shoot();
-            anim.SetBool("charging", false);
-            chargeCountdown = 1f / chargeRate;
-        }
         anim.SetBool("charging", true);
-        chargeCountdown -= Time.deltaTime;
-    }
+        //Play charge sound
+        if (audioManager != null)
+        {
+            audioManager.Play("charging2");
+        }
 
-    void Shoot()
-    {
+        yield return new WaitForSeconds(chargeTime);
+        anim.SetBool("charging", false);
+
+        //Play shoot sound
+        if (audioManager != null)
+        {
+            audioManager.Play("zap");
+        }
         GameObject chargeGO = (GameObject)Instantiate(chargePrefab, transform.position, transform.rotation);
         Charge charge = chargeGO.GetComponent<Charge>();
-        Destroy(chargeGO,0.4f);
+        charge.damage = damage;
+        Destroy(chargeGO, 0.4f);
     }
 
     public void Upgrade(int i)
     {
         if (i == 0)
         {
-            IncreaseChargeSpeed();
+            IncreaseDamage();
         }
         else if (i == 1)
         {
@@ -88,9 +62,9 @@ public class Capacitor : MonoBehaviour
         }
     }
 
-    void IncreaseChargeSpeed()
+    void IncreaseDamage()
     {
-        if (chargeRate >= upgrades[0].maxValue)
+        if (damage >= upgrades[0].maxValue)
         {
             upgrades[0].available = false;
         }
@@ -98,7 +72,7 @@ public class Capacitor : MonoBehaviour
         {
             return;
         }
-        chargeRate += upgrades[0].amount;
+        damage += upgrades[0].amount;
     }
 
     void IncreaseRange()

@@ -8,19 +8,20 @@ public class HyperParameters : MonoBehaviour
 
     bool complete = false;
     public string[] answer = { "7", "8", "9"};
-    public Dropdown[] dd;
-    public Button btn;
+    public InputField[] input;
     public Text text;
     public LevelTracker levelTracker;
+
+    public AudioManager AudioManager;
 
     public void CheckAnswer()
     {
         if (!complete)
         {
             complete = true;
-            for (int i = 0; i < dd.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
-                string guess = dd[i].options[dd[i].value].text;
+                string guess = input[i].text;
                 if (guess != answer[i])
                 {
                     complete = false;
@@ -30,18 +31,33 @@ public class HyperParameters : MonoBehaviour
             {
                 Complete();
                 levelTracker.ParamsTuned();
+            } else
+            {
+                //Play wrong sound
+                if (AudioManager != null)
+                {
+                    AudioManager.Play("error");
+                }
             }
         }
     }
 
     public void Complete()
     {
-        for (int i = 0; i < dd.Length; i++)
+        //Play correct sound
+        if (AudioManager != null)
         {
-            dd[i].interactable = false;
-            dd[i].GetComponentInChildren<Text>().color = Color.green;
+            AudioManager.Play("correct");
         }
-        btn.interactable = false;
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            input[i].interactable = false;
+            foreach(Text t in input[i].GetComponentsInChildren<Text>())
+            {
+                t.color = Color.green;
+            }
+        }
         string hyperParams = "";
         for (int i =0; i < answer.Length; i++)
         {

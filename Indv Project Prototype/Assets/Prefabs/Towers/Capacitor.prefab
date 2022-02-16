@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrades:
-  - name: Charge Speed
-    amount: 10
-    maxValue: 100
+  - name: Damage
+    amount: 100
+    maxValue: 400
     available: 1
   - name: Range
     amount: 2
@@ -139,10 +139,11 @@ MonoBehaviour:
     available: 1
   chargeRange: 8
   range: 4
-  chargeRate: 0.5
-  enemyTag: Enemy
+  chargeTime: 2
+  damage: 100
   chargePrefab: {fileID: 3283935633733766398, guid: 015d7ef20c028f74ba2fe9cd654b448f, type: 3}
   anim: {fileID: 84611194}
+  audioManager: {fileID: 0}
 --- !u!114 &-3191499575572017919
 MonoBehaviour:
   m_ObjectHideFlags: 0

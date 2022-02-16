@@ -24,7 +24,6 @@ public class Loader : MonoBehaviour
     int bomb_loc = -1;
     //may have to use string instead of ints if tmp doesn't get the same values
     public int no_bomb_chance = 0; // 0 = 100% for bomb 1 = 0%
-    public int max_text_length = 300;
 
     public PopUp popup;
 
@@ -111,18 +110,20 @@ public class Loader : MonoBehaviour
 
     public void Load_Unknown_Sentence()
     {
-        
+
+        if (s == null)
+        {
+            return;
+        }
+        if (s.Length == 0)
+        {
+            return;
+        }
         diff_mod.Load_Sentence();
         currentIndex = Random.Range(0, s.Length);
         if (currentIndex < s.Length)
         {
             string temp_text = s[currentIndex];
-            //Cut to fit screen
-            if (temp_text.Length > max_text_length)
-            {
-                temp_text = temp_text.Substring(0, max_text_length);
-                //May need to adjust correct loc with CutTextToFit in future
-            }
             if (Random.value > no_bomb_chance)
             {
                 // %Chance for a bomb
@@ -150,9 +151,12 @@ public class Loader : MonoBehaviour
 
     public void Load_Tutorial_Sentence()
     {
-        if (knownSentences.Length == 0 || knownSentences == null)
+        if (knownSentences == null)
         {
-            Load_Next_Sentence();
+            return;
+        }
+        if (knownSentences.Length == 0)
+        {
             return;
         }
         if (tutorialIndex >= knownSentences.Length)
@@ -196,6 +200,9 @@ public class Loader : MonoBehaviour
             text.text = temp_text;
             points.set_Correct_Loc(locations);
 
+            //No bombs in tutorial
+            points.Set_Bomb_Loc(-1);
+
             tutorialIndex++;
 
             //start timer
@@ -210,12 +217,15 @@ public class Loader : MonoBehaviour
 
     public void LoadKnownSentence(bool prev=false)
     {
-        if(knownSentences.Length == 0 || knownSentences == null)
+        if (knownSentences == null)
         {
-            Load_Next_Sentence();
             return;
         }
-        if(prev == false)
+        if (knownSentences.Length == 0)
+        {
+            return;
+        }
+        if (prev == false)
         {
             currentIndex = Random.Range(0, knownSentences.Length);
             //currentIndex += 1;
@@ -247,6 +257,9 @@ public class Loader : MonoBehaviour
             }
             text.text = temp_text;
             points.set_Correct_Loc(locations);
+
+            //No bombs in known sentences
+            points.Set_Bomb_Loc(-1);
 
             //start timer
             diff_mod.StartTimer();

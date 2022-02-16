@@ -19,10 +19,13 @@ public class Turret : MonoBehaviour
 
     public string enemyTag = "Enemy";
 
+    public AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void UpdateTarget()
@@ -70,6 +73,12 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
+        //Play shoot sound
+        if(audioManager != null)
+        {
+            audioManager.Play("laser2");
+        }
+
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 

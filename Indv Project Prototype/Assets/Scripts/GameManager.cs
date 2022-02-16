@@ -15,11 +15,15 @@ public class GameManager : MonoBehaviour
     public double TimerLen = 30;
     public double Timer = 30;
 
+    public string PlayerID = "Guest";
+
     [HideInInspector]
     public bool timing = false;
 
     public PopUp firstTimerPopUp;
     public PopUp secondTimerPopUp;
+
+    public int score = 0;
 
     [HideInInspector]
     public bool Switched = false;

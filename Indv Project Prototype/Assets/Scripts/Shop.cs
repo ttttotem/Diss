@@ -11,6 +11,8 @@ public class Shop : MonoBehaviour
     private Node callingNode;
     private BoxCollider2D col;
 
+    Money money;
+
     private void Awake()
     {
         if (instance != null)
@@ -24,6 +26,7 @@ public class Shop : MonoBehaviour
     public void Start()
     {
         col = GetComponent<BoxCollider2D>();
+        money = FindObjectOfType<Money>();
     }
 
     public void ShowShop(Vector3 pos, GameObject node)
@@ -44,7 +47,20 @@ public class Shop : MonoBehaviour
     {
         if(i >= 0 && i< turrets.Length)
         {
-            callingNode.BuildTurret(turrets[i]);
+            bool succeed = false;
+            if (i == 0)
+            {
+                //buying turret
+                succeed = money.Purchase(100);
+            } else if (i == 1)
+            {
+                //buying capacitor
+                succeed = money.Purchase(200);
+            }
+            if (succeed)
+            {
+                callingNode.BuildTurret(turrets[i]);
+            }
             HideShop();
         }
     }

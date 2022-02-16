@@ -8,6 +8,8 @@ public class AllyEnd : MonoBehaviour
 
     public static AllyEnd instance;
 
+    AudioManager am;
+
     private void Awake()
     {
         if (instance != null)
@@ -26,6 +28,7 @@ public class AllyEnd : MonoBehaviour
     void Start()
     {
         text.text = safe.ToString() + "/" + required.ToString();
+        am = FindObjectOfType<AudioManager>();
     }
     
     public void SetRequired(int val)
@@ -52,6 +55,11 @@ public class AllyEnd : MonoBehaviour
 
     public void OneBackSafe()
     {
+        if (am != null)
+        {
+            am.Play("shortBuzz");
+        }
+
         safe += 1;
         text.text = safe.ToString() + "/" + required.ToString();
     }

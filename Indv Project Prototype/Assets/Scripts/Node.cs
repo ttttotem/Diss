@@ -11,10 +11,10 @@ public class Node : MonoBehaviour
     public enum NodeType { Free, Terminal, Blocked, Path, Checking, Turret};
     public NodeType nodeType = NodeType.Free;
 
-    public Color hoverColor;
+    public Sprite hoverSprite;
+    Sprite startSprite;
 
     private SpriteRenderer rend;
-    private Color startColor;
 
     public Vector3 posOffset;
 
@@ -24,7 +24,7 @@ public class Node : MonoBehaviour
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
-        startColor = rend.color;
+        startSprite = rend.sprite;
     }
 
     public void SetColour(Color c)
@@ -34,14 +34,14 @@ public class Node : MonoBehaviour
 
     public void ResetColour()
     {
-        rend.color = startColor;
+        rend.sprite = startSprite;
     }
 
     private void OnMouseEnter()
     {
         if (nodeType == NodeType.Free)
         {
-            rend.color = hoverColor;
+            rend.sprite = hoverSprite;
         }
     }
 
@@ -49,7 +49,7 @@ public class Node : MonoBehaviour
     {
         if (nodeType == NodeType.Free)
         {
-            rend.color = startColor;
+            rend.sprite = startSprite;
         }
     }
 
@@ -79,5 +79,6 @@ public class Node : MonoBehaviour
             return;
         }
         turret = (GameObject)Instantiate(_turret, transform.position + posOffset, transform.rotation);
+        turret.transform.parent = transform;
     }
 }

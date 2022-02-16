@@ -25,9 +25,11 @@ public class WaveUI : MonoBehaviour
 
     public Text timerText;
 
-    bool UnitsSpawning = false;
-    bool WaveStarted = false;
+    [HideInInspector]
+    public bool UnitsSpawning = false;
+    public bool WaveStarted = false;
 
+    public Text loadedWaves;
     public void Update()
     {
         currentTime -= Time.deltaTime;
@@ -98,6 +100,7 @@ public class WaveUI : MonoBehaviour
             enemyCounts[i].text = wave._enemyCounts[i].ToString();
             currentWaveEnemies[i] = wave._enemyCounts[i];
         }
+        loadedWaves.text = "" + waveSpawner.waves.Count;
     }
 
     public void ResetUI()
@@ -109,6 +112,7 @@ public class WaveUI : MonoBehaviour
         }
         wavesComplete.text = waveSpawner.GetCompletedWaves() + "/" + waveSpawner.requiredWaves;
         timerText.text = "";
+        loadedWaves.text = "0";
     }
 
     public void SetSpeed(float speed)

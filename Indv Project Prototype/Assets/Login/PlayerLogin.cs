@@ -10,7 +10,6 @@ using LoginResult = PlayFab.ClientModels.LoginResult;
 
 public class PlayerLogin : MonoBehaviour
 {
-    private string userEmail;
     private string userName;
     private string userPassword;
     public Text loginError, registerError;
@@ -111,7 +110,8 @@ public class PlayerLogin : MonoBehaviour
 
     private void OnLoginSuccess(LoginResult result)
     {
-        PlayerPrefs.SetString("Email", userEmail);
+        PlayerPrefs.SetString("Username", userName);
+        GameManager.GM.PlayerID = result.PlayFabId;
         SetOneActive(loggedInPanelA);
         GetStats();
     }
@@ -139,7 +139,8 @@ public class PlayerLogin : MonoBehaviour
 
     private void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
-        PlayerPrefs.SetString("Email", userEmail);
+        PlayerPrefs.SetString("Username", userName);
+        GameManager.GM.PlayerID = result.PlayFabId;
         SetOneActive(loggedInPanelA);
         GetStats();
     }
@@ -161,12 +162,6 @@ public class PlayerLogin : MonoBehaviour
         Debug.LogError(error.Error);
         registerError.text = errorMessage;
     }
-
-    public void GetUserEmail(string emailIn)
-    {
-        userEmail = emailIn;
-    }
-
     public void GetUserPassword(string passwordIn)
     {
         userPassword = passwordIn;
@@ -179,13 +174,35 @@ public class PlayerLogin : MonoBehaviour
 
     public void OnClickLogIn()
     {
-        var request = new LoginWithEmailAddressRequest { Email = userEmail, Password = Encrypt(userPassword) };
-        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
+        var request = new LoginWithPlayFabRequest {Username = userName, Password = Encrypt(userPassword) };
+        PlayFabClientAPI.LoginWithPlayFab(request, OnLoginSuccess, OnLoginFailure);
     }
+
+    public void OnclickGuest()
+    {
+        //Guest loggin
+        Guid obj = Guid.NewGuid();
+        var request = new LoginWithCustomIDRequest {CustomId =obj.ToString(), CreateAccount = true };
+        PlayFabClientAPI.LoginWithCustomID(request, OnGuestLoginSuccess, OnGuestLoginFailure);
+    }
+
+    private void OnGuestLoginSuccess(LoginResult result)
+    {
+        GameManager.GM.PlayerID = result.PlayFabId;
+        SetOneActive(loggedInPanelA);
+        GetStats();
+    }
+
+    private void OnGuestLoginFailure(PlayFabError error)
+    {
+        Debug.Log(error.GenerateErrorReport());
+        Debug.Log("Guest failure");
+    }
+
 
     public void OnClickRegister()
     {
-        var registerRequest = new RegisterPlayFabUserRequest { Email = userEmail, Password = Encrypt(userPassword), Username = userName, DisplayName = userName };
+        var registerRequest = new RegisterPlayFabUserRequest {Password = Encrypt(userPassword), Username = userName, DisplayName = userName,RequireBothUsernameAndEmail = false };
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnRegisterSuccess, OnRegisterFailure);
     }
 
@@ -193,7 +210,8 @@ public class PlayerLogin : MonoBehaviour
     {
         PlayFabClientAPI.ForgetAllCredentials();
         userPassword = null;
-        email.text = userEmail;
+        GameManager.GM.PlayerID = "Guest";
+        email.text = userName;
         password.text = "";
         SetOneActive(loginPanel);
     }
@@ -201,8 +219,6 @@ public class PlayerLogin : MonoBehaviour
     #endregion login
 
     #region playerStats
-
-    public int playerLevel;
 
     public void GetStats()
     {
@@ -219,38 +235,11 @@ public class PlayerLogin : MonoBehaviour
         {
             switch (eachStat.StatisticName)
             {
-                case "PlayerLevel":
-                    playerLevel = eachStat.Value;
+                case "Score": 
+                    GameManager.GM.score = eachStat.Value;
                     break;
             }
         }
-    }
-
-    public void SetStats()
-    {
-        StartCloudUpdatePlayerStats();
-        //animation/save logo
-    }
-
-    // Build the request object and access the API
-    private void StartCloudUpdatePlayerStats()
-    {
-        PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
-        {
-            FunctionName = "UpdatePlayerStats", // Arbitrary function name (must exist in your uploaded cloud.js file)
-            FunctionParameter = new { Level = playerLevel }, // The parameter provided to your function
-            GeneratePlayStreamEvent = true, // Optional - Shows this event in PlayStream
-        }, OnCloudUpdateStats, OnPlayFabError);
-    }
-    // OnCloudHelloWorld defined in the next code block
-
-    private static void OnCloudUpdateStats(ExecuteCloudScriptResult result)
-    {
-        // CloudScript returns arbitrary results, so you have to evaluate them one step and one parameter at a time
-        JsonObject jsonResult = (JsonObject)result.FunctionResult;
-        object messageValue;
-        jsonResult.TryGetValue("messageValue", out messageValue); // note how "messageValue" directly corresponds to the JSON values set in CloudScript
-        Debug.Log((string)messageValue);
     }
 
     private static void OnPlayFabError(PlayFabError error)
@@ -278,7 +267,20 @@ public class PlayerLogin : MonoBehaviour
         {
             GameObject tempListing = Instantiate(listingPrefab, listingContainer);
             LeaderBoardListing LL = tempListing.GetComponent<LeaderBoardListing>();
-            LL.playerNameText.text = player.DisplayName;
+            Image image = tempListing.GetComponent<Image>();
+
+            if(GameManager.GM.PlayerID == player.PlayFabId)
+            {
+                image.color = new Color(1,1,1,0.2f);
+            }
+
+            if(player.DisplayName == "" || player.DisplayName == null)
+            {
+                LL.playerNameText.text = "Guest: " + player.PlayFabId.Substring(0,5);
+            } else
+            {
+                LL.playerNameText.text = player.DisplayName;
+            }
             LL.playerScoreText.text = player.StatValue.ToString();
         }
     }

@@ -16,11 +16,20 @@ public class DiffcultyMod : MonoBehaviour
 
     public TimerBar timebar;
 
+    AudioManager am;
+
+    Points points;
+
+    TMPDetector tmpd;
+
     // Start is called before the first frame update
     void Start()
     {
         loader = GetComponent<Loader>();
         loader.Set_Bomb_Chance(no_bomb_chance);
+        am = FindObjectOfType<AudioManager>();
+        points = FindObjectOfType<Points>();
+        tmpd = FindObjectOfType<TMPDetector>();
     }
 
     public void Load_Sentence()
@@ -46,8 +55,22 @@ public class DiffcultyMod : MonoBehaviour
         {
             if(current_time <= 0)
             {
+                //Play times up sound
+                if (am != null)
+                {
+                    am.Play("time");
+                }
+
+                //Lose points
+                if(points != null)
+                {
+                    points.LoseTenPerPoints();
+                }
+
                 Debug.Log("Out of time");
                 timer_on = false;
+
+                tmpd.LoadNextSentenceNoChecks();
                 return;
             } 
             timebar.SetHealth(current_time);

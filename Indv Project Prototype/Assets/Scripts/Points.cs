@@ -16,16 +16,21 @@ public class Points : MonoBehaviour
     public int[] correct_loc;
     int points = 0;
 
-    int hiddenPoints = 0;
-    int hiddenTaken = 0;
+    public int hiddenCorrect = 0;
+    public int hiddenTaken = 0;
 
     public Text points_text;
     int bomb_loc = -1;
     public bool knownSentence = false;
 
+    AudioManager am;
+
     public void Start()
     {
-        if(points_text == null)
+        points = GameManager.GM.score;
+        points_text.text = "Points: " + points;
+        am = FindObjectOfType<AudioManager>();
+        if (points_text == null)
         {
             points_text = GameObject.Find("Points").GetComponent<Text>();
         }
@@ -75,7 +80,7 @@ public class Points : MonoBehaviour
         }
 
         //Scale points by number of correct
-        if(temp_points == 0.5 * correct_loc.Length || temp_points > 2)
+        if(temp_points > 0.5 * correct_loc.Length || temp_points > 3)
         {
             temp_points = 1;
         } else
@@ -93,6 +98,26 @@ public class Points : MonoBehaviour
 
         points += temp_points;
 
+        if (temp_points > 0)
+        {
+            if(am != null)
+            {
+                if(bomb_found == true)
+                {
+                    am.Play("correct");
+                }
+            }   
+        } else
+        {
+            if(am != null)
+            {
+                if (bomb_found == true)
+                {
+                    am.Play("next");
+                }
+            }
+        }
+
         points_text.text = "Points: " + points;
     }
 
@@ -105,13 +130,12 @@ public class Points : MonoBehaviour
         {
             if (!correct_loc.Contains(i))
             {
-                Debug.Log("Shouldnt hit " + i);
+                //Debug.Log("Shouldnt hit " + i);
                 hits.Add(i);
             }
         }
         if(hits.Count == 0)
         {
-            hiddenPoints += 1;
             return true;
         }
         return false;
@@ -125,13 +149,12 @@ public class Points : MonoBehaviour
         {
             if (!loc.Contains(i))
             {
-                Debug.Log("Missed " + i);
+                //Debug.Log("Missed " + i);
                 misses.Add(i);
             }
         }
         if (misses.Count == 0)
         {
-            hiddenPoints += 1;
             return true;
         }
         return false;
@@ -139,10 +162,36 @@ public class Points : MonoBehaviour
 
     public void Bomb_Not_Found()
     {
-        Debug.Log("Bomb not found");
+        //Play bomb sound
+        if (am != null)
+        {
+            am.Play("bomb");
+        }
+
+        //Lose points
+        LoseTenPerPoints();
+
+        //Screen shake
+
     }
+
+    public void LoseTenPerPoints()
+    {
+        //Lose 10% of points (min 1 point)
+        int temp_points = points / 10;
+        if (temp_points == 0 && points > 0)
+        {
+            points -= 1;
+        }
+        else
+        {
+            points -= temp_points;
+        }
+    }
+
         public void SubmitScore()
         {
+            GameManager.GM.score = points;
             if (!PlayFabClientAPI.IsClientLoggedIn())
             {
                 return;

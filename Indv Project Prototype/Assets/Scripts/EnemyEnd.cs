@@ -9,6 +9,8 @@ public class EnemyEnd : MonoBehaviour
     public static EnemyEnd instance;
     public WaveUI waveUI;
 
+    AudioManager am;
+
     private void Awake()
     {
         if (instance != null)
@@ -28,6 +30,7 @@ public class EnemyEnd : MonoBehaviour
     void Start()
     {
         text.text = currentLives.ToString();
+        am = FindObjectOfType<AudioManager>();
     }
 
     public void LoseLives(int lives)
@@ -37,6 +40,12 @@ public class EnemyEnd : MonoBehaviour
         {
             currentLives = 0;
         }
+
+        if(am != null)
+        {
+            am.Play("shortBuzz");
+        }
+
         text.text = currentLives.ToString();
     }
 

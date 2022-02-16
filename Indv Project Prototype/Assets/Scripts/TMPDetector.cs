@@ -23,6 +23,10 @@ public class TMPDetector : MonoBehaviour
 
     public Points points;
 
+    AudioManager am;
+
+    LevelTracker levelTracker;
+
     //Problem as selected words not reseting when sentence changes
     private void Update()
     {
@@ -55,6 +59,13 @@ public class TMPDetector : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        am = FindObjectOfType<AudioManager>();
+        levelTracker = FindObjectOfType<LevelTracker>();
+        Reset_Words();
+    }
+
     void PaintWord(TMP_WordInfo wInfo, Color32 color)
     {
         //change colour of clicked word
@@ -85,6 +96,12 @@ public class TMPDetector : MonoBehaviour
         selectedWords.Clear();
     }
 
+    private void OnEnable()
+    {
+        RepaintWords();
+        selectedWords.Clear();
+    }
+
     public void PaintCorrectWords()
     {
         RepaintWords();
@@ -97,7 +114,13 @@ public class TMPDetector : MonoBehaviour
 
     public void Reset_Words()
     {
-        if(loader.Sendable == true)
+
+        if (levelTracker != null && repeatFails ==0)
+        {
+            levelTracker.IncreaseSubmission();
+        }
+
+        if (loader.Sendable == true)
         {
             sendData.addSentence(GenerateFormattedString());
         }
@@ -107,10 +130,12 @@ public class TMPDetector : MonoBehaviour
             //Answer is known so make sure all words hit
             bool hits = points.check_Hits(selectedWords.ToArray());
             bool misses = points.check_Misses(selectedWords.ToArray());
+            points.hiddenTaken += 1;
             if (hits == true && misses == true)
             {
                 //Answer correct
                 Debug.Log("Correct");
+                points.hiddenCorrect += 1;
             } else
             {
                 Debug.Log("missed");
@@ -120,11 +145,18 @@ public class TMPDetector : MonoBehaviour
                 }
                 else
                 { 
-                    if (repeatFails <= 3)
+                    if (repeatFails <= 0)
                     {
                         loader.Load_Prev_Sentence();
                         RepaintWords();
-                        if(repeatFails == 3)
+
+                        //Play error sound
+                        if (am != null)
+                        {
+                            am.Play("error");
+                        }
+
+                        if (repeatFails == 0)
                         {
                             PaintCorrectWords();
                         }
@@ -146,6 +178,22 @@ public class TMPDetector : MonoBehaviour
         {
             Debug.Log("No loader");
         } else
+        {
+            repeatFails = 0;
+
+            loader.Load_Next_Sentence();
+        }
+    }
+
+    //Load Next Sentence with no checks
+    public void LoadNextSentenceNoChecks()
+    {
+        selectedWords.Clear();
+        if (loader == null)
+        {
+            Debug.Log("No loader");
+        }
+        else
         {
             repeatFails = 0;
             loader.Load_Next_Sentence();

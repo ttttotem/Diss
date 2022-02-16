@@ -21,6 +21,9 @@ public class WaveSpawner : MonoBehaviour
 
     public Wave currentWave;
 
+    AudioManager am;
+    Money money;
+
     public int GetCompletedWaves()
     {
         return completedWaves;
@@ -29,16 +32,23 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         completedWaves = 0;
+        am = FindObjectOfType<AudioManager>();
+        money = FindObjectOfType<Money>();
     }
 
     public void IncreaseCompletedWaves()
     {
+
         completedWaves += 1;
         currentWave = null;
         if(completedWaves >= requiredWaves)
         {
             //Tower Finished
             levelTracker.towerClear = true;
+            if(am != null)
+            {
+                am.Play("correct");
+            }
             waveUI.setWavesComplete(requiredWaves, requiredWaves);
         } else
         {
@@ -53,6 +63,11 @@ public class WaveSpawner : MonoBehaviour
         {
             return;
         }
+        if(currentWave._enemyCounts == null)
+        {
+            return;
+        }
+        money.AddMoney(100);
         waves.Insert(0, currentWave);
         StartWave();
     }
@@ -73,7 +88,13 @@ public class WaveSpawner : MonoBehaviour
         }
         if(currentWave != null)
         {
-            waves.Insert(0, currentWave);
+            if(currentWave._enemyCounts != null)
+            {
+                if(currentWave._enemyCounts.Length >= 5)
+                {
+                    waves.Insert(0, currentWave);
+                }
+            }
         }
     }
 
@@ -112,27 +133,43 @@ public class WaveSpawner : MonoBehaviour
         if (nextWave._enemyCounts == null)
         {
             Debug.Log("EnemyCounts not found");
+            nextWave = null;
+            yield break;
+        }
+
+        if (nextWave._enemyCounts.Length < 5)
+        {
+            Debug.Log("EnemyCounts not formed properly");
+            nextWave = null;
             yield break;
         }
 
         int allies = nextWave._enemyCounts[0];
         int enemies1 = nextWave._enemyCounts[1];
         int enemies2 = nextWave._enemyCounts[2];
-        
+        int enemies3 = nextWave._enemyCounts[3];
+        int enemies4 = nextWave._enemyCounts[4];
+
         waveUI.UpdateUI(nextWave);
 
         //Spawn Timer
-        for (int i = time; i >= 0; i--)
+        for (int i = time; i >= 1; i--)
         {
             waveUI.timerText.text = i.ToString();
+
+            //Play timer sound
+            if(am != null)
+            {
+                am.Play("timerTick");
+            }
+
             yield return new WaitForSeconds(1f);
         }
         waveUI.timerText.text = "";
 
-
-        while (allies > 0 || enemies1 > 0 || enemies2 > 0)
+        while (allies > 0 || enemies1 > 0 || enemies2 > 0 || enemies3 > 0 || enemies4 > 0)
         {
-            int rand = Random.Range(0, 3);
+            int rand = Random.Range(0, 5);
             if (rand == 0 && allies > 0)
             {
                 allies--;
@@ -152,12 +189,31 @@ public class WaveSpawner : MonoBehaviour
                 waveUI.UnitSpawned(2);
                 yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
             }
+            else if (rand == 3 && enemies3 > 0)
+            {
+                enemies3--;
+                SpawnUnit(units[3]);
+                waveUI.UnitSpawned(3);
+                yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
+            }
+            else if (rand == 4 && enemies4 > 0)
+            {
+                enemies4--;
+                SpawnUnit(units[4]);
+                waveUI.UnitSpawned(4);
+                yield return new WaitForSeconds(Random.Range(0.8f, maxSpawnDelay));
+            }
         }
         waveUI.AllUnitsSpawned();
     }
 
     void SpawnUnit(GameObject unit)
     {
+        //Play spawn sound
+        if(am != null)
+        {
+            am.Play("shortBuzz");
+        }
         Instantiate(unit,transform.position,transform.rotation);
     }
 
@@ -181,12 +237,22 @@ public class WaveSpawner : MonoBehaviour
                 } else if (posTag == "VB")
                 {
                     enemyCount[2]++;
-                } else
+                } else if (posTag == "JJ")
                 {
                     enemyCount[3]++;
+                } else if (posTag == "DT")
+                {
+                    enemyCount[4]++;
                 }
             }
         }
+
+        //Scale number of enemies down
+        for (int i = 0; i < 5; i++)
+        {
+            enemyCount[i] = (enemyCount[i] / 10) + 1;
+        }
+        
         Wave newWave = new Wave(paragraph, enemyCount);
         AddWave(newWave);
     }
