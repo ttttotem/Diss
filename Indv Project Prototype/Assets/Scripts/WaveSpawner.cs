@@ -21,8 +21,8 @@ public class WaveSpawner : MonoBehaviour
 
     public Wave currentWave;
 
-    AudioManager am;
-    Money money;
+    public AudioManager am;
+    public Money money;
 
     public int GetCompletedWaves()
     {
@@ -32,8 +32,6 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         completedWaves = 0;
-        am = FindObjectOfType<AudioManager>();
-        money = FindObjectOfType<Money>();
     }
 
     public void IncreaseCompletedWaves()
@@ -44,7 +42,10 @@ public class WaveSpawner : MonoBehaviour
         if(completedWaves >= requiredWaves)
         {
             //Tower Finished
-            levelTracker.towerClear = true;
+            if(levelTracker != null)
+            {
+                levelTracker.towerClear = true;
+            }
             if(am != null)
             {
                 am.Play("correct");

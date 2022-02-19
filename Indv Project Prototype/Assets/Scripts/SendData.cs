@@ -18,22 +18,21 @@ public class SendData : MonoBehaviour
 
         _sentence += "  \n \n " + sentence;
 
-        //every 10 sentences send batch sentence and update player score
-        if(counter == 10)
+        //every 1 sentences send batch sentence and update player score
+        if(counter == 1)
         {
             Send(GameManager.GM.PlayerID, _sentence);
             counter = 0;
             _sentence = "";
-            if(points != null)
+            if (points != null)
             {
                 points.SubmitScore();
             }
-            
         }
         counter++;
     }
 
-    public void Send(string user, string sentences)
+    public void Send(string user, string sentences="")
     {
         StartCoroutine(Post(user,sentences));
     }
@@ -52,13 +51,13 @@ public class SendData : MonoBehaviour
         Debug.Log("Sending");
         WWWForm form = new WWWForm();
 
-        //User id, Hidden score, and system
+        //User id, Hidden score, and system, system times
         string system = "A";
         if (GameManager.GM.SystemA == false)
         {
             system = "B";
         }
-        form.AddField("entry.1188352957","User: " + user + " Hidden taken: " + points.hiddenTaken + " Hidden Correct: " + points.hiddenCorrect + " System: " + system);
+        form.AddField("entry.1188352957","User: " + user + " Hidden taken: " + points.hiddenTaken + " Hidden Correct: " + points.hiddenCorrect + " System: " + system + " SystemATime: " + GameManager.GM.SysATime + " SystemBTime: " + GameManager.GM.SysBTime);
 
         //Sentences
         form.AddField("entry.1594666246", sentences);

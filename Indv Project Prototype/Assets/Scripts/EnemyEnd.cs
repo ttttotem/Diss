@@ -29,6 +29,7 @@ public class EnemyEnd : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentLives = lives;
         text.text = currentLives.ToString();
         am = FindObjectOfType<AudioManager>();
     }

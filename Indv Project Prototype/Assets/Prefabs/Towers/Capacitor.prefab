@@ -155,7 +155,7 @@ MonoBehaviour:
     maxValue: 200
     cost: 250
     available: 1
-  - name: Charge Time
+  - name: Charge
     amount: 5
     maxValue: 5
     cost: 50

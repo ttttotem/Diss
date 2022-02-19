@@ -73,18 +73,19 @@ public class Upgrade : MonoBehaviour
 
     public void PickSelection(int i)
     {
-        if (i >= 0 && i < callingTower.getUpgrades().Length)
+        Upgrades[] upgradesarr = callingTower.getUpgrades();
+        if (i >= 0 && i < upgradesarr.Length)
         {
             bool succeed = false;
             if (i == 0)
             {
                 //first upgrade
-                succeed = money.Purchase(100);
+                succeed = money.Purchase(upgradesarr[0].cost);
             }
             else if (i == 1)
             {
                 //second upgrade
-                succeed = money.Purchase(200);
+                succeed = money.Purchase(upgradesarr[1].cost);
             }
             if (succeed)
             {

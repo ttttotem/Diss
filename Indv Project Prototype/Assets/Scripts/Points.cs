@@ -64,6 +64,7 @@ public class Points : MonoBehaviour
         }
         if(bomb_found == false)
         {
+            Debug.Log(bomb_loc);
             Bomb_Not_Found();
         }
 
@@ -162,6 +163,7 @@ public class Points : MonoBehaviour
 
     public void Bomb_Not_Found()
     {
+        bomb_loc = -1;
         //Play bomb sound
         if (am != null)
         {

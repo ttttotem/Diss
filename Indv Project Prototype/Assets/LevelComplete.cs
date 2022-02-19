@@ -18,7 +18,7 @@ public class LevelComplete : MonoBehaviour
     public void NextLevel()
     {
         int next = scene.buildIndex + 1;
-        if (next > SceneManager.sceneCount)
+        if (next >= SceneManager.sceneCountInBuildSettings)
         {
             text.text = "No more levels";
         } else

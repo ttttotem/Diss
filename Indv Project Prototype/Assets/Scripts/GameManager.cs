@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
 
+    public float SysATime = 0;
+    public float SysBTime = 0;
+
     [HideInInspector]
     public bool Switched = false;
 
@@ -45,6 +48,13 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(SystemA == true)
+        {
+            SysATime += Time.deltaTime;
+        } else
+        {
+            SysBTime += Time.deltaTime;
+        }
         if (timing == true)
         {
             if(Timer > 0)
@@ -86,8 +96,8 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         //Remove from live
-        Debug.Log("Removing player prefs, turn this off for live");
-        PlayerPrefs.DeleteAll();
+        //Debug.Log("Removing player prefs, turn this off for live");
+        //PlayerPrefs.DeleteAll();
         CoinToss();
     }
 

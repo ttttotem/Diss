@@ -214,9 +214,9 @@ MonoBehaviour:
   level: 0
   resellValue: 500
   upgrades:
-  - name: Fire Rate
+  - name: Rotation
     amount: 5
-    maxValue: 20
+    maxValue: 10
     cost: 50
     available: 1
   - name: Damage
@@ -238,8 +238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1
   damage: 1
-  range: 15
-  rotSpeed: 10
+  range: 5
+  rotSpeed: 2
   firePoint: {fileID: 7560381000722260888}
   bulletPrefab: {fileID: 5926768561991206375, guid: 21c3732e3c2c6c34591671c5befc38b1, type: 3}
   enemyTag: Enemy

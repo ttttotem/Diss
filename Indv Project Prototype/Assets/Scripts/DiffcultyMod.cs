@@ -8,7 +8,7 @@ public class DiffcultyMod : MonoBehaviour
     Loader loader;
     public TextMeshProUGUI text;
 
-    public int no_bomb_chance = 1; // 1=never 0=always
+    public float no_bomb_chance = 1; // 1=never 0=always
     public bool reversed = false;
     public float timer_max = 15; //if timer <  0 then no timer
     float current_time;

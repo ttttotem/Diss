@@ -58,7 +58,7 @@ public class Capacitor : MonoBehaviour
         {
             IncreaseDamage(u);
         }
-        else if (u.name == "Charge Time")
+        else if (u.name == "Charge")
         {
             IncreaseRange(u);
         }

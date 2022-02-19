@@ -23,7 +23,7 @@ public class Loader : MonoBehaviour
     string[] correctWords;
     int bomb_loc = -1;
     //may have to use string instead of ints if tmp doesn't get the same values
-    public int no_bomb_chance = 0; // 0 = 100% for bomb 1 = 0%
+    public float no_bomb_chance = 0; // 0 = 100% for bomb 1 = 0%
 
     public PopUp popup;
 
@@ -42,7 +42,7 @@ public class Loader : MonoBehaviour
     string[] s;
     string[] knownSentences;
 
-    public void Set_Bomb_Chance(int i)
+    public void Set_Bomb_Chance(float i)
     {
         if(i >= 0 && i <= 1)
         {

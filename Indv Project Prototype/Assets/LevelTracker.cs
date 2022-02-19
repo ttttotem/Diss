@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class LevelTracker : MonoBehaviour
 {
-    int submissions;
+    public int submissions;
     public int RequiredSubmissions = 10;
-    bool paramsTuned = false;
+    public bool paramsTuned = false;
     public bool towerClear = false;
     int accuracy = 0;
     public Text text;
@@ -76,16 +76,9 @@ public class LevelTracker : MonoBehaviour
         }
         else
         {
-            if(subs == 0)
-            {
-                subs = Random.Range(10, 33);
-            }
-            else
-            {
-                //Required submissions met
-                SetFalseTextTrue(0);
-                subs = 30;
-            }
+            //Required submissions met
+            SetFalseTextTrue(0);
+            subs = 30;
         }
 
         accuracy = accuracy + subs + tower + paramsTune;

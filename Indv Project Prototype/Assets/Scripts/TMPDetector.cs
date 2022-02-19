@@ -23,9 +23,9 @@ public class TMPDetector : MonoBehaviour
 
     public Points points;
 
-    AudioManager am;
+    public AudioManager am;
 
-    LevelTracker levelTracker;
+    public LevelTracker levelTracker;
 
     //Problem as selected words not reseting when sentence changes
     private void Update()
@@ -61,8 +61,6 @@ public class TMPDetector : MonoBehaviour
 
     public void Start()
     {
-        am = FindObjectOfType<AudioManager>();
-        levelTracker = FindObjectOfType<LevelTracker>();
         if(loader.tutorial == false)
         {
             loader.Load_Next_Sentence();

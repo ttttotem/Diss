@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Fuze : MonoBehaviour
 {
-
     public float fireRate = 1f;
     private float fireCountdown = 0f;
 
@@ -86,7 +85,7 @@ public class Fuze : MonoBehaviour
         //Play burn sound
         if (audioManager != null)
         {
-            audioManager.Play("Fire");
+            audioManager.Play("fireCharge");
         }
 
         fire = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -110,7 +109,7 @@ public class Fuze : MonoBehaviour
         {
             IncreaseDamage(u);
         }
-        else if (u.name == "Fire Rate")
+        else if (u.name == "Rotation")
         {
             IncreaseFireRate(u);
         }
@@ -118,10 +117,10 @@ public class Fuze : MonoBehaviour
 
     void IncreaseFireRate(Upgrades u)
     {
-        fireRate += u.amount;
-        if (fireRate >= u.maxValue)
+        rotSpeed += u.amount;
+        if (rotSpeed >= u.maxValue)
         {
-            fireRate = u.maxValue;
+            rotSpeed = u.maxValue;
             u.available = false;
             return;
         }

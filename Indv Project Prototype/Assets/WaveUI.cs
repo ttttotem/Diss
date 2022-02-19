@@ -115,6 +115,8 @@ public class WaveUI : MonoBehaviour
         loadedWaves.text = "0";
     }
 
+
+
     public void SetSpeed(float speed)
     {
         Time.timeScale = speed;
