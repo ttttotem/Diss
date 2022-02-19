@@ -33,7 +33,7 @@ public class Loader : MonoBehaviour
 
     public int KnownSentenceChance = 1;
 
-    int tutorialIndex = 0;
+    public int tutorialIndex = 0;
 
     DiffcultyMod diff_mod;
 
@@ -170,6 +170,10 @@ public class Loader : MonoBehaviour
             //Tutorial is beat for both systems so user doesnt have to do it twice
             GameManager.GM.SetLevel(1, false);
 
+            return;
+        }
+        if (tutorialIndex < 0 || tutorialIndex >= knownSentences.Length)
+        {
             return;
         }
         string temp_text = knownSentences[tutorialIndex];

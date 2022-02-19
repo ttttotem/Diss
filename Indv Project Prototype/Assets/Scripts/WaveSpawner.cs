@@ -228,7 +228,6 @@ public class WaveSpawner : MonoBehaviour
             {
                 continue;
             }
-            NLP.instance.POSTagger(sentence);
             foreach(var posTag in NLP.instance.posTags)
             {
                 if (posTag == "NN")

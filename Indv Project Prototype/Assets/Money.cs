@@ -14,6 +14,11 @@ public class Money : MonoBehaviour
         moneyText.text = money + "";
     }
 
+    public void Start()
+    {
+        moneyText.text = money + "";
+    }
+
     public void LoseMoney(int i)
     {
         money -= i;
@@ -36,10 +41,4 @@ public class Money : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

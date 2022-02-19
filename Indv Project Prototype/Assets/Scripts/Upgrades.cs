@@ -8,5 +8,7 @@ public class Upgrades
     public string name;
     public int amount;
     public int maxValue;
-    public bool available;
+    public int cost;
+    [HideInInspector]
+    public bool available = true;
 }

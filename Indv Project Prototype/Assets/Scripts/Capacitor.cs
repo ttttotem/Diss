@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class Capacitor : MonoBehaviour
 {
-    public Upgrades[] upgrades;
-
-    public float chargeRange = 8f;
-    public float range = 4f;
     public float chargeTime = 1f;
     public int damage = 100;
+    public float tempChargeTime = 1f;
 
     public GameObject chargePrefab;
 
@@ -50,41 +47,42 @@ public class Capacitor : MonoBehaviour
         Destroy(chargeGO, 0.4f);
     }
 
-    public void Upgrade(int i)
+    public void Upgrade(Upgrades u)
     {
-        if (i == 0)
-        {
-            IncreaseDamage();
-        }
-        else if (i == 1)
-        {
-            IncreaseRange();
-        }
-    }
-
-    void IncreaseDamage()
-    {
-        if (damage >= upgrades[0].maxValue)
-        {
-            upgrades[0].available = false;
-        }
-        if (upgrades[0].available == false)
+        if (u.available == false)
         {
             return;
         }
-        damage += upgrades[0].amount;
+
+        if (u.name == "Damage")
+        {
+            IncreaseDamage(u);
+        }
+        else if (u.name == "Charge Time")
+        {
+            IncreaseRange(u);
+        }
     }
 
-    void IncreaseRange()
+    void IncreaseDamage(Upgrades u)
     {
-        if (range >= upgrades[1].maxValue)
+        damage += u.amount;
+        if (damage >= u.maxValue)
         {
-            upgrades[1].available = false;
-        }
-        if (upgrades[1].available == false)
-        {
+            damage = u.maxValue;
+            u.available = false;
             return;
         }
-        range += upgrades[1].amount;
+    }
+
+    void IncreaseRange(Upgrades u)
+    {
+        tempChargeTime += u.amount;
+        if (tempChargeTime >= u.maxValue)
+        {
+            tempChargeTime = u.maxValue;
+            u.available = false;
+            return;
+        }
     }
 }

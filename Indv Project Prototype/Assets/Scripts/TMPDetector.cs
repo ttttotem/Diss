@@ -63,7 +63,10 @@ public class TMPDetector : MonoBehaviour
     {
         am = FindObjectOfType<AudioManager>();
         levelTracker = FindObjectOfType<LevelTracker>();
-        Reset_Words();
+        if(loader.tutorial == false)
+        {
+            loader.Load_Next_Sentence();
+        }
     }
 
     void PaintWord(TMP_WordInfo wInfo, Color32 color)
@@ -114,8 +117,27 @@ public class TMPDetector : MonoBehaviour
 
     public void Reset_Words()
     {
+        if(selectedWords.Count == 0 && loader.tutorial == false)
+        {
+            //User hasnt made a guess
+            selectedWords.Clear();
+            RepaintWords();
 
-        if (levelTracker != null && repeatFails ==0)
+            //If user has hint but didn't pick a word
+            if(repeatFails >= 1)
+            {
+                PaintCorrectWords();
+            }
+
+            //Play error sound
+            if (am != null)
+            {
+                am.Play("error");
+            }
+            return;
+        }
+
+        if (levelTracker != null)
         {
             levelTracker.IncreaseSubmission();
         }
@@ -145,10 +167,11 @@ public class TMPDetector : MonoBehaviour
                 }
                 else
                 { 
-                    if (repeatFails <= 0)
+                    if (repeatFails <= 0 || loader.tutorial == true)
                     {
                         loader.Load_Prev_Sentence();
                         RepaintWords();
+                        PaintCorrectWords();
 
                         //Play error sound
                         if (am != null)
@@ -156,10 +179,6 @@ public class TMPDetector : MonoBehaviour
                             am.Play("error");
                         }
 
-                        if (repeatFails == 0)
-                        {
-                            PaintCorrectWords();
-                        }
                         repeatFails++;
                         selectedWords.Clear();
                         return;

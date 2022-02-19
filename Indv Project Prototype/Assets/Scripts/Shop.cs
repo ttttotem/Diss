@@ -56,6 +56,10 @@ public class Shop : MonoBehaviour
             {
                 //buying capacitor
                 succeed = money.Purchase(200);
+            } else if (i == 2)
+            {
+                //buying fuse
+                succeed = money.Purchase(1000);
             }
             if (succeed)
             {

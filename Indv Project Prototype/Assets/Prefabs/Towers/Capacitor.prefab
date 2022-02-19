@@ -128,19 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e84094c3d141d4eb3f72a7223747d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgrades:
-  - name: Damage
-    amount: 100
-    maxValue: 400
-    available: 1
-  - name: Range
-    amount: 2
-    maxValue: 6
-    available: 1
-  chargeRange: 8
-  range: 4
   chargeTime: 2
   damage: 100
+  tempChargeTime: 1
   chargePrefab: {fileID: 3283935633733766398, guid: 015d7ef20c028f74ba2fe9cd654b448f, type: 3}
   anim: {fileID: 84611194}
   audioManager: {fileID: 0}
@@ -158,7 +148,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   level: 0
-  upgrades: []
+  resellValue: 50
+  upgrades:
+  - name: Damage
+    amount: 50
+    maxValue: 200
+    cost: 250
+    available: 1
+  - name: Charge Time
+    amount: 5
+    maxValue: 5
+    cost: 50
+    available: 1
 --- !u!95 &84611194
 Animator:
   serializedVersion: 3

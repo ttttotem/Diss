@@ -18,6 +18,8 @@ public class EnemyAI : MonoBehaviour
     public float animTimer = 1f;
     float currentTime = 0;
 
+    public Transform graphics;
+
     Animator animator;
 
     //public GameObject graphics;
@@ -54,10 +56,14 @@ public class EnemyAI : MonoBehaviour
         currentTime -= Time.deltaTime;
 
         Vector2 dir = target.position - transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotSpeed);
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        transform.Translate(dir.normalized * speed * Time.deltaTime);
 
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if(graphics != null)
+        {
+            graphics.rotation = Quaternion.Lerp(graphics.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotSpeed);
+        }
+        
         if (Vector2.Distance(transform.position, target.position) <= 0.1f)
         {
             GetNextWaypoint();

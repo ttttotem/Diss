@@ -8,6 +8,7 @@ public class Upgrade : MonoBehaviour
 {
     public static Upgrade instance;
     public Button[] btns;
+    public Button sellBtn;
 
     Money money;
 
@@ -45,10 +46,19 @@ public class Upgrade : MonoBehaviour
         {
             if (counter < btns.Length)
             {
-                btns[counter].GetComponentInChildren<Text>().text = upgrade.name;
+                if(upgrade.available == false)
+                {
+                    btns[counter].interactable = false;
+                } else
+                {
+                    btns[counter].interactable = true;
+                }
+                btns[counter].GetComponentInChildren<Text>().text = upgrade.name + " " + upgrade.cost + "$";
                 counter++;
             }
         }
+
+        sellBtn.GetComponentInChildren<Text>().text = "Sell " + callingTower.resellValue + "$";
 
 
         col.enabled = true;
@@ -94,10 +104,13 @@ public class Upgrade : MonoBehaviour
             } else if (callingTower.type == Tower.Type.Capacitor)
             {
                 money.AddMoney(100);
+            } else if (callingTower.type == Tower.Type.Fuse)
+            {
+                money.AddMoney(500);
             }
         }
-        
         Destroy(callingTower.gameObject);
+        HideUpgrades();
     }
 
     private void OnMouseDown()

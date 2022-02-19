@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-
-    public Upgrades[] upgrades;
-
     public float fireRate = 1f;
     private float fireCountdown = 0f;
 
@@ -19,7 +16,9 @@ public class Turret : MonoBehaviour
 
     public string enemyTag = "Enemy";
 
-    public AudioManager audioManager;
+    AudioManager audioManager;
+
+    public Transform turretTop;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +61,8 @@ public class Turret : MonoBehaviour
 
         var dir = target.position - transform.position;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotSpeed);
+        angle -= 90;
+        turretTop.rotation = Quaternion.Lerp(turretTop.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotSpeed);
         if ( fireCountdown <= 0f)
         {
             Shoot();
@@ -70,7 +70,6 @@ public class Turret : MonoBehaviour
         }
         fireCountdown -= Time.deltaTime;
     }
-
     void Shoot()
     {
         //Play shoot sound
@@ -88,41 +87,43 @@ public class Turret : MonoBehaviour
         }
     }
 
-    public void Upgrade(int i)
+    public void Upgrade(Upgrades u)
     {
-        if (i == 0)
-        {
-            IncreaseFireSpeed();
-        } else if (i == 1)
-        {
-            IncreaseRange();
-        }
-    }
-
-    void IncreaseFireSpeed()
-    {
-        if(fireRate >= upgrades[0].maxValue)
-        {
-            upgrades[0].available = false;
-        }
-        if (upgrades[0].available == false)
+        if (u.available == false)
         {
             return;
         }
-        fireRate += upgrades[0].amount;
+
+        if (u.name == "Fire Rate")
+        {
+            IncreaseFireRate(u);
+        }
+        else if (u.name == "Range")
+        {
+            IncreaseRange(u);
+        }
     }
 
-    void IncreaseRange()
+    void IncreaseFireRate(Upgrades u)
     {
-        if (range >= upgrades[1].maxValue)
+        fireRate += u.amount;
+        if (fireRate >= u.maxValue)
         {
-            upgrades[1].available = false;
-        }
-        if (upgrades[1].available == false)
-        {
+            fireRate = u.maxValue;
+            u.available = false;
             return;
         }
-        range += upgrades[1].amount;
+    }
+
+    void IncreaseRange(Upgrades u)
+    {
+        range += u.amount;
+        if (range >= u.maxValue)
+        {
+            range = u.maxValue;
+            u.available = false;
+            return;
+        }
     }
 
 }

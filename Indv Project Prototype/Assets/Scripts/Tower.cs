@@ -4,46 +4,36 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public enum Type {Turret, Capacitor}
+    public enum Type {Turret, Capacitor, Fuse}
     public Type type;
     public int level;
+    public int resellValue = 50;
 
-    private Turret turret;
-    private Capacitor capacitor;
     public Upgrades[] upgrades;
-
-    private void Start()
-    {
-        if(type == Type.Turret)
-        {
-            turret = GetComponent<Turret>();   
-        } else if(type == Type.Capacitor)
-        {
-            capacitor = GetComponent<Capacitor>();
-        }
-    }
 
     public void Upgrade(int i)
     {
+        if(i<0 || i >= upgrades.Length)
+        {
+            return;
+        }   
         if(type == Type.Turret)
         {
-            turret.Upgrade(i);
+            Turret type = GetComponent<Turret>();
+            type.Upgrade(upgrades[i]);
         } else if (type == Type.Capacitor)
         {
-            capacitor.Upgrade(i);
+            Capacitor type = GetComponent<Capacitor>();
+            type.Upgrade(upgrades[i]);
+        } else if (type == Type.Fuse)
+        {
+            Fuze type = GetComponent<Fuze>();
+            type.Upgrade(upgrades[i]);
         }
     }
 
     public Upgrades[] getUpgrades()
     {
-        if (type == Tower.Type.Turret)
-        {
-            return turret.upgrades;
-        }
-        else if (type == Tower.Type.Capacitor)
-        {
-            return capacitor.upgrades;
-        }
-        return null;
+        return upgrades;
     }
 }
