@@ -103,6 +103,13 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
+        GameObject sceneCamObj = GameObject.Find("Main Camera");
+        if (sceneCamObj != null)
+        {
+            // Should output the real dimensions of scene viewport
+            Debug.Log(sceneCamObj.GetComponent<Camera>().pixelRect);
+        }
+        Screen.SetResolution(1280, 800, false);
         if (GameManager.GM == null)
         {
             GameManager.GM = this;

@@ -37,8 +37,6 @@ public class NLPOrgs : MonoBehaviour
         //Testing();
     }
 
-
-
     public string ParseSentence(string s)
     {
         string string_with_tags = nameFinder.GetNames(models, s);

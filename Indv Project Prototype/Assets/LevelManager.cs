@@ -18,6 +18,10 @@ public class LevelManager : MonoBehaviour
         {
             level = PlayerPrefs.GetInt("SystemALevel");
         }
+        else
+        {
+            level = 0;
+        }
     }
 
     public void UpdateLevels()
@@ -25,6 +29,9 @@ public class LevelManager : MonoBehaviour
         if (PlayerPrefs.HasKey("SystemALevel"))
         {
             level = PlayerPrefs.GetInt("SystemALevel");
+        } else
+        {
+            level = 0;
         }
         int counter = 0;
         foreach(Button buttonLevel in levels)
