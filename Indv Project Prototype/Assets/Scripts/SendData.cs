@@ -18,16 +18,12 @@ public class SendData : MonoBehaviour
 
         _sentence += "  \n \n " + sentence;
 
-        //every 1 sentences send batch sentence and update player score
+        //every 1 sentences send batch sentence
         if(counter == 1)
         {
             Send(GameManager.GM.PlayerID, _sentence);
             counter = 0;
             _sentence = "";
-            if (points != null)
-            {
-                points.SubmitScore();
-            }
         }
         counter++;
     }

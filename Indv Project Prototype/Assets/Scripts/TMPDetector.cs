@@ -54,9 +54,6 @@ public class TMPDetector : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKey("h")){
-            PaintCorrectWords();
-        }
     }
 
     public void Start()

@@ -120,6 +120,9 @@ public class Points : MonoBehaviour
         }
 
         points_text.text = "Points: " + points;
+
+        //save score
+        SubmitScore();
     }
 
     public bool check_Hits(int[] loc)
@@ -189,6 +192,9 @@ public class Points : MonoBehaviour
         {
             points -= temp_points;
         }
+
+        //save score
+        SubmitScore();
     }
 
         public void SubmitScore()

@@ -344,7 +344,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 3260457428510468548}
-  levelTracker: {fileID: 0}
 --- !u!1 &176367873
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +752,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1924475646}
   m_HandleRect: {fileID: 1924475645}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1787,7 +1786,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is some text, I want to know which word was pressed
+  m_text: Click on any word in this sentence and then click next
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1899,8 +1898,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20.67, y: -0.000030517578}
-  m_SizeDelta: {x: 740.18, y: 0}
+  m_AnchoredPosition: {x: -16.3079, y: -0.000030517578}
+  m_SizeDelta: {x: 731.4557, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3260457428299965148
 MonoBehaviour:
@@ -2001,6 +2000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correct_loc: 
+  hiddenCorrect: 0
+  hiddenTaken: 0
   points_text: {fileID: 3260457428510468547}
   knownSentence: 0
 --- !u!222 &3260457428510468556
@@ -2070,6 +2071,8 @@ MonoBehaviour:
   waveSpawner: {fileID: 0}
   sendData: {fileID: 159351967}
   points: {fileID: 3260457428510468548}
+  am: {fileID: 0}
+  levelTracker: {fileID: 0}
 --- !u!1 &3260457428672373938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,11 +2362,11 @@ MonoBehaviour:
   text_helper: {fileID: 1171268602}
   text: {fileID: 3260457428299965124}
   no_bomb_chance: 0
-  max_text_length: 1000
   popup: {fileID: 0}
   NLPOrgs: {fileID: 648335370}
   points: {fileID: 3260457428510468548}
   KnownSentenceChance: 10
+  tutorialIndex: 0
   Sendable: 0
 --- !u!114 &3260457429090358802
 MonoBehaviour:

@@ -120,7 +120,7 @@ public class PlayerLogin : MonoBehaviour
         string errorMessage = "Something went wrong";
         if (error.Error == PlayFabErrorCode.InvalidParams)
         {
-            errorMessage = "Email not formatted correctly";
+            errorMessage = "Invalid inputs";
         } else if (error.Error == PlayFabErrorCode.InvalidPassword)
         {
             errorMessage = "Password is incorrect";
@@ -155,7 +155,7 @@ public class PlayerLogin : MonoBehaviour
             errorMessage = "Username already taken";
         } else if (error.Error == PlayFabErrorCode.InvalidParams)
         {
-            errorMessage = "Username should be alphanumeric";
+            errorMessage = "Invalid inputs";
         }
 
         Debug.LogError(error.GenerateErrorReport());

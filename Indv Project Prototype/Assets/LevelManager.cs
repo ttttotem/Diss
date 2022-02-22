@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
 
     public int level = 0;
     public Button[] levels;
+    public InputField username;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class LevelManager : MonoBehaviour
             }
             counter += 1;
         }
+        username.text = GameManager.GM.PlayerID;
     }
 
     private void OnEnable()
