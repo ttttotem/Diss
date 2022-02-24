@@ -16,6 +16,8 @@ public class stageTracker : MonoBehaviour
 
     public WaveSpawner waveSpawner;
 
+    public AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,8 @@ public class stageTracker : MonoBehaviour
     public void SetOneActive(GameObject gm)
     {
         Time.timeScale = 1;
-        if(gm == stages)
+        audioManager.StartFadeStarter("levelTheme", 3f, 0.6f);
+        if (gm == stages)
         {
             stages.SetActive(true);
             stageState = Stage.Stages;
@@ -38,6 +41,7 @@ public class stageTracker : MonoBehaviour
 
         if (gm == inputData)
         {
+            audioManager.StartFadeStarter("levelTheme", 3f, 0);
             inputData.SetActive(true);
             stageState = Stage.InputData;
         }

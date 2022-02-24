@@ -42,6 +42,8 @@ public class Loader : MonoBehaviour
     string[] s;
     string[] knownSentences;
 
+    public Scrollbar scrollbar;
+
     public void Set_Bomb_Chance(float i)
     {
         if(i >= 0 && i <= 1)
@@ -141,6 +143,11 @@ public class Loader : MonoBehaviour
 
             //start timer
             diff_mod.StartTimer();
+
+            if(scrollbar != null)
+            {
+                scrollbar.value = 1;
+            }
         }
         else
         {
@@ -211,6 +218,12 @@ public class Loader : MonoBehaviour
 
             //start timer
             diff_mod.StartTimer();
+
+            if (scrollbar != null)
+            {
+                scrollbar.value = 1;
+            }
+
         }
         else
         {
@@ -267,6 +280,11 @@ public class Loader : MonoBehaviour
 
             //start timer
             diff_mod.StartTimer();
+
+            if (scrollbar != null)
+            {
+                scrollbar.value = 1;
+            }
         } else
         {
             Load_Next_Sentence();

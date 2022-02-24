@@ -56,7 +56,8 @@ public class SmallUnit : MonoBehaviour
 
             if(deathParticles != null)
             {
-                Instantiate(deathParticles,transform.position,transform.rotation);
+                GameObject go = Instantiate(deathParticles,transform.position,transform.rotation);
+                Destroy(go, 2f);
             }
             Destroy(gameObject);
         }

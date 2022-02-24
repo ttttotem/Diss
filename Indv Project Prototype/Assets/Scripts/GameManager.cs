@@ -9,12 +9,6 @@ public class GameManager : MonoBehaviour
 
     public bool SystemA = true;
 
-    public bool FirstSystemComplete = false;
-    public bool SecondSystemComplete = false;
-
-    public double TimerLen = 30;
-    public double Timer = 30;
-
     public string PlayerID = "Guest";
 
     [HideInInspector]
@@ -25,24 +19,11 @@ public class GameManager : MonoBehaviour
     public float SysATime = 0;
     public float SysBTime = 0;
 
-    [HideInInspector]
-    public bool Switched = false;
-
     public void SwitchSystem()
     {
         SystemA = !SystemA;
-        Switched = true;
     }
     
-    public void StartTimer()
-    {
-        if(timing == false)
-        {
-            timing = true;
-            Timer = TimerLen;
-        }
-    }
-
     private void FixedUpdate()
     {
         if(SystemA == true)
@@ -51,33 +32,6 @@ public class GameManager : MonoBehaviour
         } else
         {
             SysBTime += Time.deltaTime;
-        }
-        if (timing == true)
-        {
-            if(Timer > 0)
-            {
-                Timer -= Time.deltaTime;
-
-                if (Timer < 0)
-                {
-                    Timer = 0;
-                }
-            } else
-            {
-                if(FirstSystemComplete == false)
-                {
-                    FirstSystemComplete = true;
-                    firstTimerPopUp.SetActive(true);
-                    timing = false;
-                    PlayerPrefs.SetInt("Sys1Comp", 1);
-                } else if (SecondSystemComplete == false)
-                {
-                    SecondSystemComplete = true;
-                    secondTimerPopUp.SetActive(true);
-                    timing = false;
-                    PlayerPrefs.SetInt("Sys2Comp", 1);
-                }
-            }
         }
     }
 
@@ -95,10 +49,9 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         //Remove from live
-        Debug.Log("Removing player prefs, turn this off for live");
-        PlayerPrefs.DeleteAll();
+        //Debug.Log("Removing player prefs, turn this off for live");
+        //PlayerPrefs.DeleteAll();
         CoinToss();
-        CheckComplete();
     }
 
     public void Awake()
@@ -144,25 +97,6 @@ public class GameManager : MonoBehaviour
         {
             //Stat is new
             PlayerPrefs.SetInt(system, level);
-        }
-    }
-
-    public void CheckComplete()
-    {
-        if (PlayerPrefs.HasKey("Sys1Comp"))
-        {
-            if(PlayerPrefs.GetInt("Sys1Comp") == 1)
-            {
-                FirstSystemComplete = true;
-            }
-        }
-
-        if (PlayerPrefs.HasKey("Sys2Comp"))
-        {
-            if (PlayerPrefs.GetInt("Sys2Comp") == 1)
-            {
-                FirstSystemComplete = true;
-            }
         }
     }
 }

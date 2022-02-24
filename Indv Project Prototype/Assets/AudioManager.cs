@@ -51,4 +51,25 @@ private void Awake()
         }
         s.source.Stop();
     }
+
+    public void StartFadeStarter(string name, float duration, float targetVolume)
+    {
+        StopAllCoroutines();
+        StartCoroutine(StartFade(name, duration, targetVolume));
+
+    }
+
+    public IEnumerator StartFade(string name, float duration, float targetVolume)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        float currentTime = 0;
+        float start = s.source.volume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            s.source.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
+    }
 }

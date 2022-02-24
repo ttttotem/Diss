@@ -47,12 +47,10 @@ MonoBehaviour:
   SystemA: 1
   FirstSystemComplete: 0
   SecondSystemComplete: 0
-  TimerLen: 30
+  TimerLen: 600
   Timer: 30
   PlayerID: Guest
   timing: 0
-  firstTimerPopUp: {fileID: 0}
-  secondTimerPopUp: {fileID: 0}
   score: 0
   SysATime: 0
   SysBTime: 0

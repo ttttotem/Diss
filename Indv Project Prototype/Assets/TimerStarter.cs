@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class TimerStarter : MonoBehaviour
 {
-    public void StartTimer()
-    {
-        GameManager.GM.StartTimer();
-    }
+
 }
