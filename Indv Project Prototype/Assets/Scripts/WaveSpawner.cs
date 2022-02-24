@@ -24,6 +24,9 @@ public class WaveSpawner : MonoBehaviour
     public AudioManager am;
     public Money money;
 
+    public Animator flashEnemy;
+    public Animator flashAlly;
+
     public int GetCompletedWaves()
     {
         return completedWaves;
@@ -58,7 +61,7 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    public void FailedWave()
+    public void FailedWave(bool allyGood = false, bool enemyGood = false)
     {
         if(currentWave == null)
         {
@@ -68,6 +71,32 @@ public class WaveSpawner : MonoBehaviour
         {
             return;
         }
+
+        //Failure animations
+        if(allyGood==false && enemyGood == false)
+        {
+            if (flashEnemy != null)
+            {
+                flashEnemy.SetTrigger("Flash");
+            }
+            if (flashAlly != null)
+            {
+                flashAlly.SetTrigger("Flash");
+            }
+        } else if (allyGood == false)
+        {
+            if (flashAlly != null)
+            {
+                flashAlly.SetTrigger("Flash");
+            }
+        } else if (enemyGood == false)
+        {
+            if (flashEnemy != null)
+            {
+                flashEnemy.SetTrigger("Flash");
+            }
+        }
+
         money.AddMoney(100);
         waves.Insert(0, currentWave);
         StartWave();
@@ -251,6 +280,14 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             enemyCount[i] = (enemyCount[i] / 10) + 1;
+        }
+
+        //Increase difficulty based on progress
+        int waveNumber = completedWaves + waves.Count;
+        for(int i = 0; i < waveNumber; i++)
+        {
+            int rand = Random.Range(0, 4);
+            enemyCount[rand] += 1;
         }
         
         Wave newWave = new Wave(paragraph, enemyCount);

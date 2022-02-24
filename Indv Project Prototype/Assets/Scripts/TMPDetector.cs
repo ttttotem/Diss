@@ -147,12 +147,17 @@ public class TMPDetector : MonoBehaviour
             //Answer is known so make sure all words hit
             bool hits = points.check_Hits(selectedWords.ToArray());
             bool misses = points.check_Misses(selectedWords.ToArray());
-            points.hiddenTaken += 1;
             if (hits == true && misses == true)
             {
                 //Answer correct
                 Debug.Log("Correct");
-                points.hiddenCorrect += 1;
+
+                //Got it right without hint
+                if(repeatFails == 0)
+                {
+                    points.hiddenCorrect += 1;
+                    points.hiddenTaken += 1;
+                }
             } else
             {
                 Debug.Log("missed");
@@ -164,6 +169,8 @@ public class TMPDetector : MonoBehaviour
                 { 
                     if (repeatFails <= 0 || loader.tutorial == true)
                     {
+                        points.hiddenTaken += 1;
+
                         loader.Load_Prev_Sentence();
                         RepaintWords();
                         PaintCorrectWords();
@@ -181,7 +188,10 @@ public class TMPDetector : MonoBehaviour
                 }
             }
         }
-        points.check_Loc(selectedWords.ToArray());
+        if(loader.tutorial != true)
+        {
+            points.check_Loc(selectedWords.ToArray());
+        }
         string waveText = text.text;
         if(waveSpawner != null)
         {

@@ -752,7 +752,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1924475646}
   m_HandleRect: {fileID: 1924475645}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2365,7 +2365,7 @@ MonoBehaviour:
   popup: {fileID: 0}
   NLPOrgs: {fileID: 648335370}
   points: {fileID: 3260457428510468548}
-  KnownSentenceChance: 10
+  KnownSentenceChance: 5
   tutorialIndex: 0
   Sendable: 0
 --- !u!114 &3260457429090358802

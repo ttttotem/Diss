@@ -454,7 +454,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -980949261
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 0, b: 0.07212782, a: 1}
   m_FlipX: 0
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a51743688585644abe2365175fda98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 1.7
   rotSpeed: 20
   animDuration: 0.5
   animTimer: 1
@@ -498,6 +498,7 @@ MonoBehaviour:
   health: 500
   friendly: 0
   healthBar: {fileID: 659446170}
+  deathParticles: {fileID: 6681368446756225841, guid: 4d203dfb23557ed468841d35ca9d6661, type: 3}
 --- !u!61 &1958567505
 BoxCollider2D:
   m_ObjectHideFlags: 0

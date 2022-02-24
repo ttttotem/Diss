@@ -16,6 +16,8 @@ public class SmallUnit : MonoBehaviour
 
     AudioManager audioManager;
 
+    public GameObject deathParticles;
+
     void Start()
     {
         curHealth = health;
@@ -50,6 +52,11 @@ public class SmallUnit : MonoBehaviour
                 {
                     audioManager.Play("friendDeath");
                 }
+            }
+
+            if(deathParticles != null)
+            {
+                Instantiate(deathParticles,transform.position,transform.rotation);
             }
             Destroy(gameObject);
         }

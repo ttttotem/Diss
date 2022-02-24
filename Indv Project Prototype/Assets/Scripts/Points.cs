@@ -128,7 +128,6 @@ public class Points : MonoBehaviour
     public bool check_Hits(int[] loc)
     {
         //Count how many guesses where wrong
-        hiddenTaken += 1;
         List<int> hits = new List<int>();
         foreach (int i in loc)
         {

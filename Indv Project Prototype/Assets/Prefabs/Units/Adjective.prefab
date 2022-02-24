@@ -177,7 +177,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -980949261
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.97646487, g: 1, b: 0, a: 1}
   m_FlipX: 0
@@ -221,6 +221,7 @@ MonoBehaviour:
   health: 600
   friendly: 0
   healthBar: {fileID: 4465381190218262577}
+  deathParticles: {fileID: 6681368446756225841, guid: 4d203dfb23557ed468841d35ca9d6661, type: 3}
 --- !u!61 &1958567505
 BoxCollider2D:
   m_ObjectHideFlags: 0

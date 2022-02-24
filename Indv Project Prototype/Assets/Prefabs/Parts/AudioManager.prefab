@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &146523749205049588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146523749205049587}
+  - component: {fileID: 146523749205049586}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &146523749205049587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146523749205049588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &146523749205049586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146523749205049588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3829b839665d6cd47bf9cca5589400d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: levelTheme
+    clip: {fileID: 8300000, guid: 1968190c74b576d45a28d4322c0cf00c, type: 3}
+    volume: 0.4
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - name: correct
+    clip: {fileID: 8300000, guid: 5257f85965defa846b8c308a41fb4dc6, type: 3}
+    volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: error
+    clip: {fileID: 8300000, guid: 31ab5c78978bf6745b6a64f8974fb743, type: 3}
+    volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: next
+    clip: {fileID: 8300000, guid: e7da03d992885d44eb01cd8ddeb1637d, type: 3}
+    volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: laser2
+    clip: {fileID: 8300000, guid: 3f1d0cfcba54c3842ba438f396a05f1c, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: zap
+    clip: {fileID: 8300000, guid: b1849982bd573c347a6a287bc0336f96, type: 3}
+    volume: 0.2
+    pitch: 0.8
+    source: {fileID: 0}
+    loop: 0
+  - name: charging2
+    clip: {fileID: 8300000, guid: ef862fa0d2c34d344a3a664ce5cfb654, type: 3}
+    volume: 0.4
+    pitch: 0.95
+    source: {fileID: 0}
+    loop: 0
+  - name: bomb
+    clip: {fileID: 8300000, guid: 2bbb6a2d11383f043a01313c27bbf84f, type: 3}
+    volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: time
+    clip: {fileID: 8300000, guid: ff7495517858c4141bcbfd9d018a02dd, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    source: {fileID: 0}
+    loop: 0
+  - name: timerTick
+    clip: {fileID: 8300000, guid: 937bc7669db9f544989135823b7635eb, type: 3}
+    volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: spawn
+    clip: {fileID: 8300000, guid: 3d22e5bdecb7b81468c0fa94615a56be, type: 3}
+    volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: shortBuzz
+    clip: {fileID: 8300000, guid: ce91870f76b93f2418c200c01d3e78b5, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: buzz
+    clip: {fileID: 8300000, guid: 1f31a31f00f080e4ba5e3daf727ecd8b, type: 3}
+    volume: 0.2
+    pitch: 0.5
+    source: {fileID: 0}
+    loop: 0
+  - name: enemyDeath
+    clip: {fileID: 8300000, guid: f3c672a4b4cf70c41a977126e50ff177, type: 3}
+    volume: 0.05
+    pitch: 1.2
+    source: {fileID: 0}
+    loop: 0
+  - name: friendDeath
+    clip: {fileID: 8300000, guid: a7fe6a91967f247468a60c8de390af34, type: 3}
+    volume: 0.1
+    pitch: 1.2
+    source: {fileID: 0}
+    loop: 0
+  - name: fire
+    clip: {fileID: 8300000, guid: 506ecd898fec031468995be5529d4a45, type: 3}
+    volume: 0.2
+    pitch: 0.6
+    source: {fileID: 0}
+    loop: 1
+  - name: fireCharge
+    clip: {fileID: 8300000, guid: b5c4e5c35493fc44392e6246e2ab36c8, type: 3}
+    volume: 0.4
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

@@ -45,7 +45,7 @@ public class WaveUI : MonoBehaviour
                     WaveStarted = false;
                 } else
                 {
-                    waveSpawner.FailedWave();
+                    waveSpawner.FailedWave(allyEnd.CheckPassed(),EnemyEnd.CheckPassed());
 
                     UnitsSpawning = true;
                     WaveStarted = false;

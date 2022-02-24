@@ -47,6 +47,7 @@ public class PlayerLogin : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            CloseLeaderBoardPanel();
             if (PlayFabClientAPI.IsClientLoggedIn())
             {
                 SetOneActive(loggedInPanelA);

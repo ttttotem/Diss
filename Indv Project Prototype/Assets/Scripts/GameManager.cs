@@ -20,9 +20,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool timing = false;
 
-    public PopUp firstTimerPopUp;
-    public PopUp secondTimerPopUp;
-
     public int score = 0;
 
     public float SysATime = 0;
@@ -72,11 +69,13 @@ public class GameManager : MonoBehaviour
                     FirstSystemComplete = true;
                     firstTimerPopUp.SetActive(true);
                     timing = false;
+                    PlayerPrefs.SetInt("Sys1Comp", 1);
                 } else if (SecondSystemComplete == false)
                 {
                     SecondSystemComplete = true;
                     secondTimerPopUp.SetActive(true);
                     timing = false;
+                    PlayerPrefs.SetInt("Sys2Comp", 1);
                 }
             }
         }
@@ -96,9 +95,10 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         //Remove from live
-        //Debug.Log("Removing player prefs, turn this off for live");
-        //PlayerPrefs.DeleteAll();
+        Debug.Log("Removing player prefs, turn this off for live");
+        PlayerPrefs.DeleteAll();
         CoinToss();
+        CheckComplete();
     }
 
     public void Awake()
@@ -144,6 +144,25 @@ public class GameManager : MonoBehaviour
         {
             //Stat is new
             PlayerPrefs.SetInt(system, level);
+        }
+    }
+
+    public void CheckComplete()
+    {
+        if (PlayerPrefs.HasKey("Sys1Comp"))
+        {
+            if(PlayerPrefs.GetInt("Sys1Comp") == 1)
+            {
+                FirstSystemComplete = true;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("Sys2Comp"))
+        {
+            if (PlayerPrefs.GetInt("Sys2Comp") == 1)
+            {
+                FirstSystemComplete = true;
+            }
         }
     }
 }
