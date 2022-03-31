@@ -1,3 +1,5 @@
+# Biomedical Text Annotation
+
 * Source code outline:
   * Game: collection of c# scripts that handle the game logic. Main ones are:
     * "NLPOrgs.cs": Converts hidden model guesses into string locations
@@ -14,3 +16,6 @@
   * Install Github for Unity
   * Fork from https://github.com/2373655r/Diss.git
   * Press play in inspector or file -> build settings -> build
+
+
+Rhodri Rees 2373655r
