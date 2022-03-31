@@ -1,0 +1,176 @@
+# Timelog
+
+* Gamification of Biomedical Text Annotation
+* Rhodri Rees
+* 2373655r
+* Jake Lever
+
+## Week 1
+
+### 4 Oct 2021
+
+* *4 hours* Read the project guidance notes
+* *2 hours* Research prior to first meeting
+* *0.5 hour* Meeting with supervisor
+
+## 11 Oct 2021
+
+* *2 hour* Pre meeting research
+* *0.5 hours* Meeting with supervisor
+
+## 18 Oct 2021
+
+* *2 hour* Pre meeting research
+* *0.5 hours* Meeting with supervisor
+
+## 25 Oct 2021
+
+* *2 hour* Pre meeting research
+* *0.5 hours* Meeting with supervisor
+
+## 27 Apr 2021
+
+* *6 hours* Implementing initial prototype using TMP
+
+## 1 Nov 2021
+
+* *2 hour* Pre meeting research
+* *0.5 hours* Meeting with supervisor
+
+## 8 Nov 2021
+
+* *2 hour* Pre meeting research
+* *0.5 hours* Meeting with supervisor
+
+## 15 Nov 2021
+
+* *6 hours* Challenge elements added to data annotation
+
+## 22 Nov 2021
+
+* *0.5 hours* Meeting with supervisor
+
+## 24 Nov 2021
+
+* *4 hours* Working on NER for unity
+
+## 25 Nov 2021
+
+* *4 hours* Adapting NER to specific diseases
+
+## 29 Nov 2021
+
+* *0.5 hours* Meeting with supervisor
+
+## 30 Nov 2021
+
+* *6 hours* Added leaderboard, points and player accounts
+
+## 12 Jan 2022
+
+* *0.5 hours* Meeting with supervisor
+
+## 17 Jan 2022
+
+* *6 hours* Added tower defense minigame
+
+## 19 Jan 2022
+
+* *0.5 hours* Meeting with supervisor
+
+## 22 Jan 2022
+
+* *6 hours* Converted NER to allocate points
+
+## 26 Jan 2022
+
+* *0.5 hours* Meeting with supervisor
+
+## 30 Jan 2022
+
+* *6 hours* Creating pilot study, creating baseline system
+
+## 2 Feb 2022
+
+* *0.5 hours* Meeting with supervisor
+
+## 5 Feb 2022
+
+* *6 hours* Finalizing pilot study
+
+## 9 Feb 2022
+
+* *0.5 hours* Meeting with supervisor
+
+## 20 Feb 2022
+
+* *6 hours* Running pilot study
+
+## 25 Feb 2022
+
+* *0.5 hours* Meeting with supervisor
+
+## 6 Apr 2022
+
+* *6 hours* Changes from pilot study: no music, more time, bugfix, switch menu
+
+## 9 Apr 2022
+
+* *0.5 hours* Meeting with supervisor
+
+## 15 Apr 2022
+
+* *6 hours* Running proper study
+
+## 16 Apr 2022
+
+* *0.5 hours* Meeting with supervisor
+
+## 17 Apr 2022
+
+* *6 hours* Processing annotations from study
+
+## 18 Apr 2022
+
+* *6 hours* Processing survey results from study
+
+
+## 19 Apr 2022
+
+* *6 hours* Writing report fluff
+
+## 20 Mar 2022
+
+* *6 hours* Writting report
+
+## 21 Mar 2022
+
+* *6 hours* Writting report
+
+## 22 Mar 2022
+
+* *6 hours* Writting report
+
+## 23 Mar 2022
+
+* *6 hours* Writting report
+
+## 24 Mar 2022
+
+* *4 hours* Formatting report
+
+## 26 Mar 2022
+
+* *6 hours* Formatting report
+
+## 27 Mar 2022
+
+* *6 hours* Creating presentation slides
+
+## 28 Mar 2022
+
+* *6 hours* Recording presentation
+
+## 31 Mar 2022
+
+* *6 hours* Finalizing report
