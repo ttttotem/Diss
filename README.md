@@ -4,8 +4,11 @@
 * Game: collection of c# scripts that handle the game logic. Main ones are:
    * "NLPOrgs.cs": Converts hidden model guesses into string locations
    * "Loader.cs": Handles how trap questions vs clean questions are loaded
-   * "Points.cs": Handles how points are allocated to users "TMPDetector.cs": Handles user input for annotation
+   * "Points.cs": Handles how points are allocated to users 
+   * "TMPDetector.cs": Handles user input for annotation
    * "NLP.cs": Handles ner hidden model and pos tagger
+   * "NERTrainer.cs": Trains the NER to work on diseases
+   * "SnedData.cs": Handles sending users responses to google forms
 * Data preparation: "Format converter.ipynb"
 * Data processing: "Graphs.ipynb"
 
