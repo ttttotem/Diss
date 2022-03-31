@@ -8,7 +8,7 @@
    * "TMPDetector.cs": Handles user input for annotation
    * "NLP.cs": Handles ner hidden model and pos tagger
    * "NERTrainer.cs": Trains the NER to work on diseases
-   * "SnedData.cs": Handles sending users responses to google forms
+   * "SendData.cs": Handles sending users responses to google forms
 * Data preparation: "Format converter.ipynb"
 * Data processing: "Graphs.ipynb"
 
