@@ -1,5 +1,7 @@
 # Biomedical Text Annotation
 
+Custom Annotation system that was used to investigate the effect of gamification on motivating human annotator engagment for crowdsourcing purposes
+
 ## Source code outline:
 * Game: collection of c# scripts that handle the game logic. Main ones are:
    * "NLPOrgs.cs": Converts hidden model guesses into string locations
