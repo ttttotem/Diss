@@ -14,9 +14,6 @@ Custom Annotation system that was used to investigate the effect of gamification
 * Data preparation: "Format converter.ipynb"
 * Data processing: "Graphs.ipynb"
 
-## To play prototype:
-  * https://2373655r.itch.io/biomedical-text-annotation
- 
 ## To play with .exe:
   * Click Indv Project Prototype.exe
  
